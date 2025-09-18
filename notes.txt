@@ -1,0 +1,27 @@
+seeding order:
+	1-questions_comb_seeder
+	2-answer_seeder
+	3-comb_id_answer_seeder
+	4-wrong_answer_comb_seeder
+
+	1-quesrions air brakes seeder
+	2- air brakes answer seeder
+	3- air brakes id answer seeder
+	4- wrong answer air brakes seeder
+
+	1- questions_general_seeder
+	2- general_answer_seeder
+	3- general_id_answer_seeder
+	4- wrong_airbrakes_answer_seeder
+questions of type comb start from 1to64 
+wrong answers for type comb start from 65 to 128
+comb questions
+correct = q
+wrong1 = 64+(q-1)x2+1
+wrong2 = 64+(q-1)x2+2
+
+airbrakes questions
+correctt = 193 + (q-65) 
+wrong1 = 264 + (q-65) x 2
+wrong2 = 265 + (q-65) x 2
+questions of type airBrakes start from 65 to 135
