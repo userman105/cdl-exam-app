@@ -1,7 +1,7 @@
 import {BaseSeeder} from '@adonisjs/lucid/seeders'
 import Question from '#models/question'
 
-export default class QuestionCombSeeder extends BaseSeeder {
+export default class questionCombSeeder extends BaseSeeder {
   public async run() {
     const englishQuestions = [
      " Where should the tractor be positioned when checking the supports after disconnecting the trailer?",

@@ -14,9 +14,6 @@ export default class Exam extends BaseModel {
   public title!: string
 
   @column()
-  public answersIncluded?: boolean
-
-  @column()
   public noOfQuestions!: number
 
   @column.dateTime({ autoCreate: true })

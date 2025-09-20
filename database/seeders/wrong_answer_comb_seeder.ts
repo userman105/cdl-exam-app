@@ -1,7 +1,7 @@
 import {BaseSeeder} from '@adonisjs/lucid/seeders'
 import Answer from '#models/answer'
 
-export default class AnswersWrongSeeder extends BaseSeeder {
+export default class combAnswersWrongSeeder extends BaseSeeder {
   public async run() {
     const englishWrongAnswers = [
       "Completely removed from the trailer.",

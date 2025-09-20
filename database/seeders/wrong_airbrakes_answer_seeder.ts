@@ -1,6 +1,6 @@
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
 import Answer from '#models/answer'
-export default class extends BaseSeeder {
+export default class wrongAirBrakesAnswerSeeder extends BaseSeeder {
   async run() {
     const englishAnswers =[
       "Have in a modulating control valve.",

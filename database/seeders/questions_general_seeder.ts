@@ -1,7 +1,7 @@
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
 import Question from "#models/question"
 
-export default class extends BaseSeeder {
+export default class questionsGeneralSeeder extends BaseSeeder {
   async run() {
     const englishQuestions = [
       "You are driving straight on a highway at 50 miles per hour, there are no vehicles in front of you, when suddenly a tire on your vehicle bursts: what should you do first?",

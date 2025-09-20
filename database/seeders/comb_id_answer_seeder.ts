@@ -1,7 +1,7 @@
 import {BaseSeeder} from '@adonisjs/lucid/seeders'
 import Question from '#models/question'
 
-export default class idAnswerSeeder extends BaseSeeder {
+export default class combIdAnswerSeeder extends BaseSeeder {
   public async run() {
     const updates = []
     for (let i = 1; i <= 64; i++) {

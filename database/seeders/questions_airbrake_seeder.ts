@@ -1,6 +1,6 @@
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
 import Question from "#models/question"
-export default class QuestionAirBrakesSeeder extends BaseSeeder {
+export default class questionAirBrakesSeeder extends BaseSeeder {
 
   async run() {
 
@@ -159,7 +159,7 @@ export default class QuestionAirBrakesSeeder extends BaseSeeder {
     }
 
     const question = englishQuestions.map((text, i)=> ({
-      questionCate: "airBrakes",
+      questionCate: "AIRBRAKES",
       questionText: text,
       questionTextAr: arabicQuestions[i],
       }))

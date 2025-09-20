@@ -22,20 +22,20 @@ export default class UserController {
     let oldUserName: string | null = null
     let oldPasswordHash: string | null = null
 
-    // update username
+
     if (userName && userName !== user.userName) {
       oldUserName = user.userName
       user.userName = userName
       updated = true
     }
 
-    // update mobile number
+
     if (mobileNumber && mobileNumber !== user.mobileNumber) {
       user.mobileNumber = mobileNumber
       updated = true
     }
 
-    // update password (requires old password)
+
     if (newPassword) {
       if (!oldPassword) {
         return response.status(400).json({ error: 'Old password is required' })
@@ -54,7 +54,7 @@ export default class UserController {
     if (updated) {
       await user.save()
 
-      // log into credentials history
+
       if (oldUserName || oldPasswordHash) {
 
         await CredentialHistory.create({
