@@ -33,7 +33,11 @@ export default class ExamUser extends BaseModel {
   @column()
   declare wrongAnswers: number
 
-  // Relationships
+  @column()
+  declare currentQuestionId: number
+
+  @column()
+  declare status: 'in_progress'|'paused'|'finished'
   @belongsTo(() => User, {
     foreignKey: 'userId',
   })

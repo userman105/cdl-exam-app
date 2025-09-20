@@ -49,5 +49,8 @@ export default class ExamUsersController {
       currentQuestionId: examUser.currentQuestionId,
       timeElapsed: examUser.timeElapsed,
     })
+
+
+
   }
 }

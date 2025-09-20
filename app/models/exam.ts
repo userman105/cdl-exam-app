@@ -4,8 +4,21 @@ import type {ManyToMany} from "@adonisjs/lucid/types/relations";
 import User from './user.js'
 import Question from './question.js'
 
+export enum ExamType {
+  COMBINATION = 'combination',
+  AIRBRAKES = 'airbrakes',
+  GENERAL = 'general'
+}
+
 export default class Exam extends BaseModel {
+
+
+
   public static table = 'exams'
+
+
+  @column()
+  public examType!: ExamType
 
   @column({ isPrimary: true })
   public examId!: number
