@@ -156,6 +156,7 @@ export default class ExamAttemptsController {
       'timeElapsed',
     ])
 
+
     const examUser = await ExamUser.query()
       .where('examId', examId)  // Fixed: using examId to match your model
       .where('userId', user.user_id)  // Fixed: using userId to match your model

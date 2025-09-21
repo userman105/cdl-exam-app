@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, manyToMany} from '@adonisjs/lucid/orm'
-import type {ManyToMany} from "@adonisjs/lucid/types/relations";
+import { BaseModel, column, manyToMany } from '@adonisjs/lucid/orm'
+import type { ManyToMany } from '@adonisjs/lucid/types/relations'
 import User from './user.js'
 import Question from './question.js'
 
@@ -11,39 +11,43 @@ export enum ExamType {
 }
 
 export default class Exam extends BaseModel {
-
-
-
   public static table = 'exams'
 
-
-  @column()
-  public examType!: ExamType
-
   @column({ isPrimary: true })
-  public examId!: number
+  declare examId: number
 
   @column()
-  public title!: string
+  declare title: string
 
   @column()
-  public noOfQuestions!: number
+  declare noOfQuestions: number
+
+  @column()
+  declare examType: ExamType
 
   @column.dateTime({ autoCreate: true })
-  public createdAt!: DateTime
+  declare createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt?: DateTime
-
-  @manyToMany(() => User, {
-    pivotTable: 'exam_users',
-    pivotColumns: ['last_attempted', 'time_elapsed', 'no_of_attempts', 'no_of_questions', 'correct_answers', 'wrong_answers'],
-  })
-  public participants!: ManyToMany<typeof User>
+  declare updatedAt: DateTime
 
   @manyToMany(() => Question, {
     pivotTable: 'exam_questions',
+    localKey: 'examId',
+    pivotForeignKey: 'exam_id',
+    relatedKey: 'questionId',
+    pivotRelatedForeignKey: 'question_id',
     pivotColumns: ['question_type'],
   })
-  public questions!: ManyToMany<typeof Question>
+  declare questions: ManyToMany<typeof Question>
+
+  @manyToMany(() => User, {
+    pivotTable: 'exam_users',
+    localKey: 'examId',
+    pivotForeignKey: 'examId',
+    relatedKey: 'userId',
+    pivotRelatedForeignKey: 'userId',
+    pivotColumns: ['last_attempted', 'time_elapsed', 'no_of_attempts', 'no_of_questions', 'correct_answers', 'wrong_answers'],
+  })
+  declare participants: ManyToMany<typeof User>
 }

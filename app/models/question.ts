@@ -1,5 +1,5 @@
-import { BaseModel, column, manyToMany,} from '@adonisjs/lucid/orm'
-import type {ManyToMany} from "@adonisjs/lucid/types/relations";
+import { BaseModel, column, manyToMany,belongsTo} from '@adonisjs/lucid/orm'
+import type {ManyToMany,BelongsTo} from "@adonisjs/lucid/types/relations";
 import Exam from './exam.js'
 
 export default class Question extends BaseModel {
@@ -12,6 +12,9 @@ export default class Question extends BaseModel {
   public questionCate?: string
 
   @column()
+  declare examId: number
+
+  @column()
   public questionText!: string
 
   @column()
@@ -19,6 +22,12 @@ export default class Question extends BaseModel {
 
   @column()
   public correctAnswerId!: number
+
+
+  @belongsTo(() => Exam, {
+    foreignKey: 'examId',
+  })
+  declare exam: BelongsTo<typeof Exam>
 
   @manyToMany(() => Exam, {
     pivotTable: 'exam_questions',

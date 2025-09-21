@@ -11,4 +11,7 @@ export default class ExamQuestion extends BaseModel {
 
   @column()
   public questionType?: string
+
+
+
 }

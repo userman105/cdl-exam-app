@@ -66,12 +66,13 @@ export default class ExamsController {
   async show({ params, response }: HttpContext) {
     try {
       const exam = await Exam.query()
-        .where('examId', params.id)
+        .where('examId', params.examId)
         .preload('questions')
         .firstOrFail()
 
       return response.json(exam)
     } catch (error) {
+      console.log(error)
       return response.status(404).json({ error: 'Exam not found' })
     }
   }

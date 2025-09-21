@@ -8,17 +8,21 @@ import ExamsController from "#controllers/exams_controller";
 
 router.post('/register', [AuthController, 'register'])
 router.post('/login', [AuthController, 'login'])
+// dev only
 router.post('/exams', [ExamsController, 'create'])
+
+router.get('/exams/index',[ExamsController, 'index'])
+router.get('/exams/:examId', [ExamsController, 'show'])
+router.post('/exams/:examId/start', [ExamAttemptsController, 'start'])
+router.get('/exam-attempts/:id',[ExamAttemptsController,'showExam'])
+router.post('/exams/:examId/submit', [ExamAttemptsController, 'submit'])
+router.post('/exams/:examId/pause', [ExamAttemptsController, 'pause'])
+router.post('/:examId/resume', [ExamAttemptsController, 'resume'])
 
 router
   .group(() => {
     router.get('/me', [AuthController, 'me'])
     router.post('/logout', [AuthController, 'logout'])
-    router.post('/exams/:examId/start', [ExamAttemptsController, 'start'])
-    router.post('/exams/:examId/submit', [ExamAttemptsController, 'submit'])
-    router.post('/exams/:examId/pause', [ExamAttemptsController, 'pause'])
-    router.get('/:examId', [ExamAttemptsController, 'showExam'])
-    router.post('/:examId/resume', [ExamAttemptsController, 'resume'])
     router.patch('/profile', [UserController,'updateProfile'])
   })
   .middleware([middleware.auth()])
