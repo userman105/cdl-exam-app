@@ -3,7 +3,7 @@ import ExamUser from '#models/exam_user'
 import Exam from '#models/exam'
 import { DateTime } from 'luxon'
 import Answer from '#models/answer'
-
+import Question from '#models/question'
 export default class ExamAttemptsController {
   /**
    * Start or resume an exam attempt
@@ -110,18 +110,24 @@ export default class ExamAttemptsController {
     const user = auth.user!
     const examId = Number(params.examId)
 
-    const { isCorrect, timeElapsed, isLastQuestion } = request.only([
-      'isCorrect',
+    const { questionId, answerId, timeElapsed, isLastQuestion } = request.only([
+      'questionId',
+      'answerId',
       'timeElapsed',
       'isLastQuestion',
     ])
 
-    // Use query builder for composite key
+    // find the exam attempt
     const examUser = await ExamUser.query()
       .where('userId', user.user_id)
       .where('examId', examId)
       .firstOrFail()
 
+    // find the question and check correctness
+    const question = await Question.findOrFail(questionId)
+    const isCorrect = question.correctAnswerId === answerId
+
+    // update stats
     examUser.lastAttempted = DateTime.now()
     examUser.timeElapsed = timeElapsed
 
@@ -131,11 +137,10 @@ export default class ExamAttemptsController {
       examUser.wrongAnswers += 1
     }
 
-    // Move to next question unless finished
     if (isLastQuestion) {
       examUser.status = 'finished'
     } else {
-      examUser.currentQuestionId += 1
+      examUser.currentQuestionId = questionId + 1
     }
 
     await examUser.save()

@@ -19,6 +19,47 @@ export default class AuthController {
   /**
    * Register a new user
    */
+  async googleRedirect({ ally }: HttpContext) {
+    return ally.use('google').redirect()
+  }
+
+  // Step 2: Handle callback from Google
+  async googleCallback({ ally, response }: HttpContext) {
+    const google = ally.use('google')
+
+    if (google.accessDenied()) {
+      return response.unauthorized({ error: 'Access denied' })
+    }
+
+    if (google.stateMisMatch()) {
+      return response.badRequest({ error: 'State mismatch' })
+    }
+
+    if (google.hasError()) {
+      return response.badRequest({ error: google.getError() })
+    }
+
+    const userData = await google.user()
+
+    // Check if email exists in DB
+    const user = await User.findBy('email', userData.email)
+
+    if (!user) {
+      return response.notFound({
+        error: 'No user is attached to this email',
+        email: userData.email,
+      })
+    }
+
+    // If a user exists, issue an access token
+    const token = await User.accessTokens.create(user, ['*'], { expiresIn: '24h' })
+
+    return response.json({
+      message: 'Google login successful',
+      user,
+      token: token.toJSON(),
+    })
+  }
   async register({ request, response }: HttpContext) {
     try {
       const data = request.only(['fName', 'lName', 'userName', 'email', 'password', 'mobileNumber'])
