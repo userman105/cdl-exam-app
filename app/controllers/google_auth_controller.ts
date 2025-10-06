@@ -2,15 +2,16 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { OAuth2Client } from 'google-auth-library'
 import User from '#models/user'
+import env from '#start/env'
 
 export default class GoogleAuthController {
   private client = new OAuth2Client(
-    process.env.GOOGLE_CLIENT_ID,
-    process.env.GOOGLE_CLIENT_SECRET,
-    process.env.GOOGLE_REDIRECT_URI
+    env.get('GOOGLE_CLIENT_ID'),
+    env.get('GOOGLE_CLIENT_SECRET'),
+    env.get('GOOGLE_REDIRECT_URI')
   )
 
-  // Step 1: Redirect to Google
+
   async redirect({ response }: HttpContext) {
     const url = this.client.generateAuthUrl({
       access_type: 'offline',
@@ -19,37 +20,19 @@ export default class GoogleAuthController {
     return response.redirect(url)
   }
 
-  // Step 2: Handle callback
   async callback({ request, response }: HttpContext) {
     try {
       const { code } = request.qs()
       const { tokens } = await this.client.getToken(code)
-      this.client.setCredentials(tokens)
 
-      const ticket = await this.client.verifyIdToken({
-        idToken: tokens.id_token!,
-        audience: process.env.GOOGLE_CLIENT_ID,
-      })
-
-      const payload = ticket.getPayload()
+      const payload = await this.verifyGoogleToken(tokens.id_token!)
       if (!payload?.email) {
         return response.unauthorized({ error: 'No email returned from Google' })
       }
 
-      // Check if user exists in DB
-      const user = await User.findBy('email', payload.email)
-      if (!user) {
-        return response.unauthorized({ error: 'No user attached to this email' })
-      }
-
-      // Issue Adonis access token
-      const token = await User.accessTokens.create(user, ['*'], {
-        expiresIn: '24h',
-      })
-
-      return response.json({ user, token: token.toJSON() })
+      return this.loginOrReject(payload.email, response)
     } catch (err) {
-      console.error(err)
+      console.error('Google callback error:', err)
       return response.internalServerError({ error: 'Google login failed' })
     }
   }
@@ -61,31 +44,51 @@ export default class GoogleAuthController {
         return response.badRequest({ error: 'Missing id_token' })
       }
 
-      const ticket = await this.client.verifyIdToken({
-        idToken,
-        audience: process.env.GOOGLE_CLIENT_ID,
-      })
-
-      const payload = ticket.getPayload()
+      const payload = await this.verifyGoogleToken(idToken)
       if (!payload?.email) {
         return response.unauthorized({ error: 'No email returned from Google' })
       }
 
-      // Check if user exists in DB
-      const user = await User.findBy('email', payload.email)
-      if (!user) {
-        return response.unauthorized({ error: 'No user attached to this email' })
-      }
-
-      // Issue Adonis access token
-      const token = await User.accessTokens.create(user, ['*'], {
-        expiresIn: '24h',
-      })
-
-      return response.json({ user, token: token.toJSON() })
+      return this.loginOrReject(payload.email, response)
     } catch (err) {
-      console.error(err)
+      console.error('Google mobile login error:', err)
       return response.internalServerError({ error: 'Google login failed' })
     }
+  }
+
+  private async verifyGoogleToken(idToken: string) {
+    const ticket = await this.client.verifyIdToken({
+      idToken,
+      audience: env.get('GOOGLE_CLIENT_ID'),
+    })
+    return ticket.getPayload()
+  }
+
+  private async loginOrReject(email: string, response: HttpContext['response']) {
+    const user = await User.findBy('email', email)
+
+    if (!user) {
+      return response.unauthorized({
+        error: 'No account found with this email. Please register first.'
+      })
+    }
+
+
+    const token = await User.accessTokens.create(user)
+
+    return response.json({
+      user: {
+        user_id: user.user_id,
+        fName: user.fName,
+        lName: user.lName,
+        userName: user.userName,
+        email: user.email,
+        mobileNumber: user.mobileNumber,
+      },
+      token: {
+        type: 'bearer',
+        token: token.value!.release(),
+      },
+    })
   }
 }

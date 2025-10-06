@@ -6,61 +6,50 @@ import CredentialHistory from './credentials_history.js'
 import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
 
 export default class User extends BaseModel {
-  /**
-   * Configure access tokens provider for this model
-   * Docs: https://docs.adonisjs.com/guides/authentication/access-tokens-guard
-   */
-  static accessTokens = DbAccessTokensProvider.forModel(User, {
-    table: 'access_tokens',
-    type: 'auth_token',
-    expiresIn: '24h',
-    prefix: 'oat_',
-    tokenSecretLength: 40,
-  })
-
+  static accessTokens = DbAccessTokensProvider.forModel(User)
   public static table = 'users'
 
   @column({ isPrimary: true })
-  declare user_id: number
+  public user_id!: number
 
   @column()
-  declare fName: string
+  public fName!: string
 
   @column()
-  declare lName: string
+  public lName!: string
 
   @column()
-  declare userName: string
+  public userName!: string
 
   @column()
-  declare email: string
+  public email!: string
 
   @column({ serializeAs: null })
-  declare password: string
+  public password!: string
 
   @column()
-  declare mobileNumber?: string
+  public mobileNumber?: string
 
   @column()
-  declare subscribed: boolean
+  public subscribed!: boolean
 
   @column()
-  declare typeOfSubscription?: 'WEEKLY' | 'MONTHLY' | 'YEARLY' | 'ONE_TIME'
+  public typeOfSubscription?: 'WEEKLY' | 'MONTHLY' | 'YEARLY' | 'ONE_TIME'
 
   @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime
+  public createdAt!: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime
+  public updatedAt!: DateTime
 
   @column.dateTime()
-  declare lastLogin?: DateTime
+  public lastLogin?: DateTime
 
   @hasMany(() => CredentialHistory)
-  declare credentialsHistory: HasMany<typeof CredentialHistory>
+  public credentialsHistory!: HasMany<typeof CredentialHistory>
 
   @beforeSave()
-  static async hashPassword(user: User) {
+  public static async hashPassword(user: User) {
     if (user.$dirty.password) {
       user.password = await hash.make(user.password)
     }

@@ -2,10 +2,11 @@ import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
 import hash from '@adonisjs/core/services/hash'
 import { DateTime } from 'luxon'
+import AuthAccessToken from '#models/auth_access_token'
 
 function debugToken(token: any, user: any) {
   if (process.env.NODE_ENV === 'development') {
-    console.log('🔍 DEBUG INFO:')
+    console.log(' DEBUG INFO:')
     console.log('  Raw Token:', token.value!.release())
     console.log('  User ID:', user.user_id) // Note: using user_id from your model
     console.log('  Token Type:', token.type)
@@ -23,7 +24,6 @@ export default class AuthController {
     return ally.use('google').redirect()
   }
 
-  // Step 2: Handle callback from Google
   async googleCallback({ ally, response }: HttpContext) {
     const google = ally.use('google')
 
@@ -51,8 +51,7 @@ export default class AuthController {
       })
     }
 
-    // If a user exists, issue an access token
-    const token = await User.accessTokens.create(user, ['*'], { expiresIn: '24h' })
+    const token = await User.accessTokens.create(user, ['*'])
 
     return response.json({
       message: 'Google login successful',
@@ -84,6 +83,7 @@ export default class AuthController {
   /**
    * Login and get an access token
    */
+
   async login({ request, response }: HttpContext) {
     try {
       const { email, password } = request.only(['email', 'password'])
@@ -98,12 +98,10 @@ export default class AuthController {
         return response.status(401).json({ error: 'Invalid credentials' })
       }
 
-      // Create access token
-      const token = await User.accessTokens.create(user, ['*'], {
-        expiresIn: '24h',
-      })
+      await AuthAccessToken.query().where('tokenable_id', user.user_id).delete()
 
-      // Update last login
+      const token = await User.accessTokens.create(user, ['*'])
+
       user.lastLogin = DateTime.now()
       await user.save()
 
@@ -122,6 +120,8 @@ export default class AuthController {
         token: {
           type: 'bearer',
           token: token.value!.release(),
+          expiresAt: token.expiresAt,
+          identifier: token.identifier,
         },
       })
     } catch (error) {
@@ -158,12 +158,30 @@ export default class AuthController {
    */
   async logout({ auth, response }: HttpContext) {
     try {
-      // Method that should work in v6
-      await auth.use('api').invalidateToken()
+      const user = auth.user!
+      await AuthAccessToken.query().where('tokenable_id', user.user_id).delete()
       return response.json({ message: 'Logged out successfully' })
     } catch (error) {
       console.error('Logout error:', error)
       return response.status(500).json({ error: 'Logout failed' })
     }
   }
+  async check({ auth, response }: HttpContext) {
+    try {
+      // Ensure user is authenticated
+      await auth.check()
+
+      return response.json({
+        valid: true,
+        user: auth.user, // Optional: return user info if needed
+      })
+    } catch {
+      return response.unauthorized({
+        valid: false,
+        error: 'Invalid or expired token',
+      })
+    }
+  }
+
 }
+

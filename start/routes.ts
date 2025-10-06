@@ -20,6 +20,7 @@ router.post('/auth/google/callback', [GoogleAuthController, 'mobile'])
 
 router
   .group(() => {
+    router.get('/auth/check', [AuthController, 'check'])
     router.get('/me', [AuthController, 'me'])
     router.post('/logout', [AuthController, 'logout'])
     router.patch('/profile', [UserController,'updateProfile'])
