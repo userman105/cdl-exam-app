@@ -45,6 +45,15 @@ export default class User extends BaseModel {
   @column.dateTime()
   public lastLogin?: DateTime
 
+  @column()
+  public otp_code?: string | null=null
+
+  @column.dateTime()
+  public otp_expires_at?: DateTime | null = null
+
+  @column()
+  public is_verified: boolean = false
+
   @hasMany(() => CredentialHistory)
   public credentialsHistory!: HasMany<typeof CredentialHistory>
 

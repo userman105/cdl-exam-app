@@ -3,7 +3,7 @@ import User from '#models/user'
 import hash from '@adonisjs/core/services/hash'
 import { DateTime } from 'luxon'
 import AuthAccessToken from '#models/auth_access_token'
-
+import { sendOtpMail } from '#services/otp_service'
 function debugToken(token: any, user: any) {
   if (process.env.NODE_ENV === 'development') {
     console.log(' DEBUG INFO:')
@@ -59,26 +59,74 @@ export default class AuthController {
       token: token.toJSON(),
     })
   }
+
   async register({ request, response }: HttpContext) {
     try {
       const data = request.only(['fName', 'lName', 'userName', 'email', 'password', 'mobileNumber'])
+
+      const existingUser = await User.query()
+        .where('email', data.email)
+        .orWhere('user_name', data.userName)
+        .first()
+
+      if (existingUser) {
+        return response.status(400).json({ error: 'Username or email already in use' })
+      }
+
       const user = await User.create(data)
 
+      const otp = Math.floor(100000 + Math.random() * 900000).toString()
+      user.otp_code = otp
+      user.otp_expires_at = DateTime.now().plus({ minutes: 10 })
+      await user.save()
+
+      await sendOtpMail(user, otp)
+
       return response.status(201).json({
-        user: {
-          user_id: user.user_id,
-          fName: user.fName,
-          lName: user.lName,
-          userName: user.userName,
-          email: user.email,
-          mobileNumber: user.mobileNumber,
-        },
+        message: 'Registration successful. OTP sent to your email for verification.',
+        email: user.email,
       })
-    } catch (error) {
+    } catch (error: any) {
       console.error('Registration error:', error)
-      return response.status(400).json({ error: 'Registration failed' })
+
+      if (error.code === '23505') {
+        return response.status(400).json({ error: 'Username or email already in use' })
+      }
+
+      return response.status(500).json({ error: 'Registration failed' })
     }
   }
+
+
+
+
+  async verifyEmail({ request, response }: HttpContext) {
+    const { email, otp } = request.only(['email', 'otp'])
+
+    const user = await User.findBy('email', email)
+    if (!user) return response.status(404).json({ error: 'User not found' })
+
+    if (user.is_verified) {
+      return response.json({ message: 'User already verified' })
+    }
+
+    if (!user.otp_code || user.otp_code !== otp) {
+      return response.status(400).json({ error: 'Invalid OTP' })
+    }
+
+    if (DateTime.now() > user.otp_expires_at!) {
+      return response.status(400).json({ error: 'OTP expired' })
+    }
+
+    user.is_verified = true
+
+    user.otp_code = null
+    user.otp_expires_at = null
+    await user.save()
+
+    return response.json({ message: 'Email verified successfully' })
+  }
+
 
   /**
    * Login and get an access token

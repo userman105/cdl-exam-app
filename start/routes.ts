@@ -8,6 +8,8 @@ import GoogleAuthController from "#controllers/google_auth_controller";
 
 router.post('/register', [AuthController, 'register'])
 router.post('/login', [AuthController, 'login'])
+router.post('/auth/verify', [AuthController, 'verifyEmail'])
+
 // dev only
 router.post('/exams', [ExamsController, 'create'])
 
