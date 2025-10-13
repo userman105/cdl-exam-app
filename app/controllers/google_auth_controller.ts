@@ -3,6 +3,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import { OAuth2Client } from 'google-auth-library'
 import User from '#models/user'
 import env from '#start/env'
+import AuthAccessToken from '#models/auth_access_token'
 
 export default class GoogleAuthController {
   private client = new OAuth2Client(
@@ -10,7 +11,6 @@ export default class GoogleAuthController {
     env.get('GOOGLE_CLIENT_SECRET'),
     env.get('GOOGLE_REDIRECT_URI')
   )
-
 
   async redirect({ response }: HttpContext) {
     const url = this.client.generateAuthUrl({
@@ -69,9 +69,18 @@ export default class GoogleAuthController {
 
     if (!user) {
       return response.unauthorized({
-        error: 'No account found with this email. Please register first.'
+        error: 'No account found with this email. Please register first.',
       })
     }
+
+    if (!user.is_verified) {
+      return response.unauthorized({
+        error: 'Please verify your email before logging in with Google.',
+      })
+    }
+
+
+    await AuthAccessToken.query().where('tokenable_id', user.user_id).delete()
 
 
     const token = await User.accessTokens.create(user)
@@ -88,6 +97,8 @@ export default class GoogleAuthController {
       token: {
         type: 'bearer',
         token: token.value!.release(),
+        expiresAt: token.expiresAt,
+        identifier: token.identifier,
       },
     })
   }

@@ -4,11 +4,12 @@ import hash from '@adonisjs/core/services/hash'
 import { DateTime } from 'luxon'
 import AuthAccessToken from '#models/auth_access_token'
 import { sendOtpMail } from '#services/otp_service'
+
 function debugToken(token: any, user: any) {
   if (process.env.NODE_ENV === 'development') {
     console.log(' DEBUG INFO:')
     console.log('  Raw Token:', token.value!.release())
-    console.log('  User ID:', user.user_id) // Note: using user_id from your model
+    console.log('  User ID:', user.user_id)
     console.log('  Token Type:', token.type)
     console.log('  Expires:', token.expiresAt)
     console.log('  Token Identifier:', token.identifier)
@@ -18,7 +19,7 @@ function debugToken(token: any, user: any) {
 
 export default class AuthController {
   /**
-   * Register a new user
+   * Google OAuth
    */
   async googleRedirect({ ally }: HttpContext) {
     return ally.use('google').redirect()
@@ -27,27 +28,25 @@ export default class AuthController {
   async googleCallback({ ally, response }: HttpContext) {
     const google = ally.use('google')
 
-    if (google.accessDenied()) {
-      return response.unauthorized({ error: 'Access denied' })
-    }
-
-    if (google.stateMisMatch()) {
-      return response.badRequest({ error: 'State mismatch' })
-    }
-
-    if (google.hasError()) {
-      return response.badRequest({ error: google.getError() })
-    }
+    if (google.accessDenied()) return response.unauthorized({ error: 'Access denied' })
+    if (google.stateMisMatch()) return response.badRequest({ error: 'State mismatch' })
+    if (google.hasError()) return response.badRequest({ error: google.getError() })
 
     const userData = await google.user()
 
     // Check if email exists in DB
     const user = await User.findBy('email', userData.email)
-
     if (!user) {
       return response.notFound({
         error: 'No user is attached to this email',
         email: userData.email,
+      })
+    }
+
+    // Block Google login unless user is verified
+    if (!user.is_verified) {
+      return response.unauthorized({
+        error: 'Please verify your email before logging in with Google.',
       })
     }
 
@@ -60,6 +59,9 @@ export default class AuthController {
     })
   }
 
+  /**
+   * Register user + send OTP
+   */
   async register({ request, response }: HttpContext) {
     try {
       const data = request.only(['fName', 'lName', 'userName', 'email', 'password', 'mobileNumber'])
@@ -75,9 +77,11 @@ export default class AuthController {
 
       const user = await User.create(data)
 
+      // OTP generation
       const otp = Math.floor(100000 + Math.random() * 900000).toString()
       user.otp_code = otp
       user.otp_expires_at = DateTime.now().plus({ minutes: 10 })
+      user.is_verified = false
       await user.save()
 
       await sendOtpMail(user, otp)
@@ -97,9 +101,9 @@ export default class AuthController {
     }
   }
 
-
-
-
+  /**
+   * Verify OTP
+   */
   async verifyEmail({ request, response }: HttpContext) {
     const { email, otp } = request.only(['email', 'otp'])
 
@@ -119,7 +123,6 @@ export default class AuthController {
     }
 
     user.is_verified = true
-
     user.otp_code = null
     user.otp_expires_at = null
     await user.save()
@@ -127,18 +130,23 @@ export default class AuthController {
     return response.json({ message: 'Email verified successfully' })
   }
 
-
   /**
-   * Login and get an access token
+   * Login (requires verified user)
    */
-
   async login({ request, response }: HttpContext) {
     try {
       const { email, password } = request.only(['email', 'password'])
-
       const user = await User.findBy('email', email)
+
       if (!user) {
         return response.status(401).json({ error: 'Invalid credentials' })
+      }
+
+      // block login until email verified
+      if (!user.is_verified) {
+        return response.status(403).json({
+          error: 'Please verify your email before logging in.',
+        })
       }
 
       const isValid = await hash.verify(user.password, password)
@@ -146,8 +154,10 @@ export default class AuthController {
         return response.status(401).json({ error: 'Invalid credentials' })
       }
 
+      // remove any old tokens
       await AuthAccessToken.query().where('tokenable_id', user.user_id).delete()
 
+      // create new token
       const token = await User.accessTokens.create(user, ['*'])
 
       user.lastLogin = DateTime.now()
@@ -178,9 +188,6 @@ export default class AuthController {
     }
   }
 
-  /**
-   * Get the currently logged-in user
-   */
   async me({ auth, response }: HttpContext) {
     try {
       await auth.authenticate()
@@ -201,9 +208,6 @@ export default class AuthController {
     }
   }
 
-  /**
-   * Logout the user (invalidate token)
-   */
   async logout({ auth, response }: HttpContext) {
     try {
       const user = auth.user!
@@ -214,14 +218,13 @@ export default class AuthController {
       return response.status(500).json({ error: 'Logout failed' })
     }
   }
+
   async check({ auth, response }: HttpContext) {
     try {
-      // Ensure user is authenticated
       await auth.check()
-
       return response.json({
         valid: true,
-        user: auth.user, // Optional: return user info if needed
+        user: auth.user,
       })
     } catch {
       return response.unauthorized({
@@ -230,6 +233,7 @@ export default class AuthController {
       })
     }
   }
-
 }
+
+
 

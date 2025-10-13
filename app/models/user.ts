@@ -46,7 +46,7 @@ export default class User extends BaseModel {
   public lastLogin?: DateTime
 
   @column()
-  public otp_code?: string | null=null
+  public otp_code?: string | null = null
 
   @column.dateTime()
   public otp_expires_at?: DateTime | null = null
