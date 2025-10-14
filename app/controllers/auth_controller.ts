@@ -64,17 +64,29 @@ export default class AuthController {
    */
   async register({ request, response }: HttpContext) {
     try {
-      const data = request.only(['fName', 'lName', 'userName', 'email', 'password', 'mobileNumber'])
+      const data = request.only([
+        'fName',
+        'lName',
+        'userName',
+        'email',
+        'password',
+        'mobileNumber',
+      ])
 
+      // Check if email or username already exists
       const existingUser = await User.query()
         .where('email', data.email)
         .orWhere('user_name', data.userName)
         .first()
 
       if (existingUser) {
-        return response.status(400).json({ error: 'Username or email already in use' })
+        return response.status(400).json({
+          success: false,
+          error: 'Username or email already in use',
+        })
       }
 
+      // Create new user
       const user = await User.create(data)
 
       // OTP generation
@@ -87,19 +99,31 @@ export default class AuthController {
       await sendOtpMail(user, otp)
 
       return response.status(201).json({
+        success: true,
         message: 'Registration successful. OTP sent to your email for verification.',
         email: user.email,
       })
     } catch (error: any) {
-      console.error('Registration error:', error)
+      // Always log to stdout so PhpStorm shows it
+      console.log('Registration error:', error)
 
+      // Handle duplicate constraint (Postgres error 23505)
       if (error.code === '23505') {
-        return response.status(400).json({ error: 'Username or email already in use' })
+        return response.status(400).json({
+          success: false,
+          error: 'Username or email already in use',
+        })
       }
 
-      return response.status(500).json({ error: 'Registration failed' })
+      // Generic error fallback
+      return response.status(500).json({
+        success: false,
+        error: error.message || 'Registration failed',
+        details: error.stack || error,
+      })
     }
   }
+
 
   /**
    * Verify OTP
@@ -154,10 +178,10 @@ export default class AuthController {
         return response.status(401).json({ error: 'Invalid credentials' })
       }
 
-      // remove any old tokens
+
       await AuthAccessToken.query().where('tokenable_id', user.user_id).delete()
 
-      // create new token
+
       const token = await User.accessTokens.create(user, ['*'])
 
       user.lastLogin = DateTime.now()
@@ -233,6 +257,84 @@ export default class AuthController {
       })
     }
   }
+  public async resendOtp({ request, response }: HttpContext) {
+    const oldEmail = request.input('oldEmail')
+    const newEmail = request.input('newEmail') || oldEmail
+
+    // find the user by old email
+    const user = await User.findBy('email', oldEmail)
+    if (!user) {
+      return response.status(404).json({
+        success: false,
+        error: 'User not found',
+      })
+    }
+
+    if (user.is_verified) {
+      return response.status(400).json({
+        success: false,
+        error: 'User already verified',
+      })
+    }
+
+    // if email was changed, update it
+    if (newEmail !== oldEmail) {
+      user.email = newEmail
+      await user.save()
+    }
+
+    // rate-limit check
+    if (user.otp_expires_at && DateTime.now() < user.otp_expires_at.minus({ minutes: 9 })) {
+      return response.status(429).json({
+        success: false,
+        error: 'Please wait before requesting a new OTP',
+      })
+    }
+
+    // generate OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString()
+    user.otp_code = otp
+    user.otp_expires_at = DateTime.now().plus({ minutes: 10 })
+    await user.save()
+
+    // send OTP to new email
+    await sendOtpMail(user, otp)
+
+    return response.json({
+      success: true,
+      message: 'New OTP sent successfully',
+      email: user.email,
+    })
+  }
+  public async updateEmail({ request, response }: HttpContext) {
+    const oldEmail = request.input('old_email')
+    const newEmail = request.input('new_email')
+
+    // find the existing user by old email
+    const user = await User.findBy('email', oldEmail)
+    if (!user) {
+      return response.status(404).json({ success: false, error: 'User not found' })
+    }
+
+    // check if new email is already taken
+    const existing = await User.findBy('email', newEmail)
+    if (existing) {
+      return response.status(400).json({ success: false, error: 'Email already in use' })
+    }
+
+    // update email and generate new otp
+    user.email = newEmail
+    const otp = Math.floor(100000 + Math.random() * 900000).toString()
+    user.otp_code = otp
+    user.otp_expires_at = DateTime.now().plus({ minutes: 10 })
+    await user.save()
+
+    await sendOtpMail(user, otp)
+
+    return response.json({ success: true, message: 'Email updated and OTP sent' })
+  }
+
+
 }
 
 
