@@ -1,3 +1,4 @@
+// app/controllers/auth_controller.ts
 import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
 import hash from '@adonisjs/core/services/hash'
@@ -33,9 +34,8 @@ export default class AuthController {
     if (google.hasError()) return response.badRequest({ error: google.getError() })
 
     const userData = await google.user()
-
-    // Check if email exists in DB
     const user = await User.findBy('email', userData.email)
+
     if (!user) {
       return response.notFound({
         error: 'No user is attached to this email',
@@ -43,7 +43,6 @@ export default class AuthController {
       })
     }
 
-    // Block Google login unless user is verified
     if (!user.is_verified) {
       return response.unauthorized({
         error: 'Please verify your email before logging in with Google.',
@@ -73,7 +72,6 @@ export default class AuthController {
         'mobileNumber',
       ])
 
-      // Check if email or username already exists
       const existingUser = await User.query()
         .where('email', data.email)
         .orWhere('user_name', data.userName)
@@ -86,10 +84,8 @@ export default class AuthController {
         })
       }
 
-      // Create new user
       const user = await User.create(data)
 
-      // OTP generation
       const otp = Math.floor(100000 + Math.random() * 900000).toString()
       user.otp_code = otp
       user.otp_expires_at = DateTime.now().plus({ minutes: 10 })
@@ -104,10 +100,8 @@ export default class AuthController {
         email: user.email,
       })
     } catch (error: any) {
-      // Always log to stdout so PhpStorm shows it
       console.log('Registration error:', error)
 
-      // Handle duplicate constraint (Postgres error 23505)
       if (error.code === '23505') {
         return response.status(400).json({
           success: false,
@@ -115,7 +109,6 @@ export default class AuthController {
         })
       }
 
-      // Generic error fallback
       return response.status(500).json({
         success: false,
         error: error.message || 'Registration failed',
@@ -124,24 +117,18 @@ export default class AuthController {
     }
   }
 
-
   /**
    * Verify OTP
    */
   async verifyEmail({ request, response }: HttpContext) {
     const { email, otp } = request.only(['email', 'otp'])
-
     const user = await User.findBy('email', email)
+
     if (!user) return response.status(404).json({ error: 'User not found' })
-
-    if (user.is_verified) {
-      return response.json({ message: 'User already verified' })
-    }
-
+    if (user.is_verified) return response.json({ message: 'User already verified' })
     if (!user.otp_code || user.otp_code !== otp) {
       return response.status(400).json({ error: 'Invalid OTP' })
     }
-
     if (DateTime.now() > user.otp_expires_at!) {
       return response.status(400).json({ error: 'OTP expired' })
     }
@@ -155,33 +142,27 @@ export default class AuthController {
   }
 
   /**
-   * Login (requires verified user)
+   * Login
    */
   async login({ request, response }: HttpContext) {
     try {
       const { email, password } = request.only(['email', 'password'])
       const user = await User.findBy('email', email)
 
-      if (!user) {
-        return response.status(401).json({ error: 'Invalid credentials' })
-      }
-
-      // block login until email verified
+      if (!user) return response.status(401).json({ error: 'Invalid credentials' })
       if (!user.is_verified) {
         return response.status(403).json({
-          error: 'Please verify your email before logging in.',
+          success: false,
+          needsVerification: true,
+          email: user.email,
+          message: 'Account not verified. Please verify your email.',
         })
       }
 
       const isValid = await hash.verify(user.password, password)
-      if (!isValid) {
-        return response.status(401).json({ error: 'Invalid credentials' })
-      }
-
+      if (!isValid) return response.status(401).json({ error: 'Invalid credentials' })
 
       await AuthAccessToken.query().where('tokenable_id', user.user_id).delete()
-
-
       const token = await User.accessTokens.create(user, ['*'])
 
       user.lastLogin = DateTime.now()
@@ -257,72 +238,53 @@ export default class AuthController {
       })
     }
   }
+
+  /**
+   * Resend OTP
+   */
   public async resendOtp({ request, response }: HttpContext) {
     const oldEmail = request.input('oldEmail')
     const newEmail = request.input('newEmail') || oldEmail
 
-    // find the user by old email
     const user = await User.findBy('email', oldEmail)
     if (!user) {
-      return response.status(404).json({
-        success: false,
-        error: 'User not found',
-      })
+      return response.status(404).json({ success: false, error: 'User not found' })
     }
-
     if (user.is_verified) {
-      return response.status(400).json({
-        success: false,
-        error: 'User already verified',
-      })
+      return response.status(400).json({ success: false, error: 'User already verified' })
     }
-
-    // if email was changed, update it
     if (newEmail !== oldEmail) {
       user.email = newEmail
       await user.save()
     }
-
-    // rate-limit check
     if (user.otp_expires_at && DateTime.now() < user.otp_expires_at.minus({ minutes: 9 })) {
-      return response.status(429).json({
-        success: false,
-        error: 'Please wait before requesting a new OTP',
-      })
+      return response.status(429).json({ success: false, error: 'Please wait before requesting a new OTP' })
     }
 
-    // generate OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString()
     user.otp_code = otp
     user.otp_expires_at = DateTime.now().plus({ minutes: 10 })
     await user.save()
 
-    // send OTP to new email
     await sendOtpMail(user, otp)
-
-    return response.json({
-      success: true,
-      message: 'New OTP sent successfully',
-      email: user.email,
-    })
+    return response.json({ success: true, message: 'New OTP sent successfully', email: user.email })
   }
+
+  /**
+   * Update email
+   */
   public async updateEmail({ request, response }: HttpContext) {
     const oldEmail = request.input('old_email')
     const newEmail = request.input('new_email')
 
-    // find the existing user by old email
     const user = await User.findBy('email', oldEmail)
-    if (!user) {
-      return response.status(404).json({ success: false, error: 'User not found' })
-    }
+    if (!user) return response.status(404).json({ success: false, error: 'User not found' })
 
-    // check if new email is already taken
     const existing = await User.findBy('email', newEmail)
     if (existing) {
       return response.status(400).json({ success: false, error: 'Email already in use' })
     }
 
-    // update email and generate new otp
     user.email = newEmail
     const otp = Math.floor(100000 + Math.random() * 900000).toString()
     user.otp_code = otp
@@ -330,12 +292,48 @@ export default class AuthController {
     await user.save()
 
     await sendOtpMail(user, otp)
-
     return response.json({ success: true, message: 'Email updated and OTP sent' })
   }
 
+  /**
+   * Forgot Password Flow
+   */
+  public async requestPasswordReset({ request, response }: HttpContext) {
+    const email = request.input('email')
+    const user = await User.findBy('email', email)
+    if (!user) return response.status(404).json({ success: false, error: 'User not found' })
 
+    const otp = Math.floor(100000 + Math.random() * 900000).toString()
+    user.otp_code = otp
+    user.otp_expires_at = DateTime.now().plus({ minutes: 10 })
+    await user.save()
+
+    await sendOtpMail(user, otp)
+    return response.json({ success: true, message: 'OTP sent to your email for password reset' })
+  }
+
+  public async verifyPasswordResetOtp({ request, response }: HttpContext) {
+    const { email, otp } = request.only(['email', 'otp'])
+    const user = await User.findBy('email', email)
+    if (!user) return response.status(404).json({ error: 'User not found' })
+    if (!user.otp_code || user.otp_code !== otp) return response.status(400).json({ error: 'Invalid OTP' })
+    if (DateTime.now() > user.otp_expires_at!) return response.status(400).json({ error: 'OTP expired' })
+
+    return response.json({ success: true, message: 'OTP verified successfully. You can now reset your password.' })
+  }
+
+  public async resetPassword({ request, response }: HttpContext) {
+    const { email, otp, newPassword } = request.only(['email', 'otp', 'newPassword'])
+    const user = await User.findBy('email', email)
+    if (!user) return response.status(404).json({ error: 'User not found' })
+    if (!user.otp_code || user.otp_code !== otp) return response.status(400).json({ error: 'Invalid OTP' })
+    if (DateTime.now() > user.otp_expires_at!) return response.status(400).json({ error: 'OTP expired' })
+
+    user.password = newPassword
+    user.otp_code = null
+    user.otp_expires_at = null
+    await user.save()
+
+    return response.json({ success: true, message: 'Password has been reset successfully' })
+  }
 }
-
-
-

@@ -14,6 +14,10 @@ router.post('/auth/update-email', [AuthController, 'updateEmail'])
 // dev only
 router.post('/exams', [ExamsController, 'create'])
 
+// password reset
+router.post('/auth/request-password-reset', [AuthController, 'requestPasswordReset'])
+router.post('/auth/verify-reset-otp', [AuthController, 'verifyPasswordResetOtp'])
+router.post('/auth/reset-password', [AuthController, 'resetPassword'])
 
 //google OAuth2
 router.get('/auth/google', [GoogleAuthController, 'redirect'])
