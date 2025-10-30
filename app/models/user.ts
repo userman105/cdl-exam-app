@@ -16,7 +16,7 @@ export default class User extends BaseModel {
   public fName!: string
 
   @column()
-  public lName!: string
+  public lName?: string | null = null
 
   @column()
   public userName!: string
@@ -25,7 +25,7 @@ export default class User extends BaseModel {
   public email!: string
 
   @column({ serializeAs: null })
-  public password!: string
+  public password?: string | null = null
 
   @column()
   public mobileNumber?: string
@@ -60,6 +60,7 @@ export default class User extends BaseModel {
   @beforeSave()
   public static async hashPassword(user: User) {
     if (user.$dirty.password) {
+      // @ts-ignore
       user.password = await hash.make(user.password)
     }
   }

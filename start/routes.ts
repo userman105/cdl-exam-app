@@ -11,6 +11,8 @@ router.post('/login', [AuthController, 'login'])
 router.post('/auth/verify', [AuthController, 'verifyEmail'])
 router.post('/auth/resend-otp', [AuthController, 'resendOtp'])
 router.post('/auth/update-email', [AuthController, 'updateEmail'])
+router.get('/exam-attempts/:id',[ExamAttemptsController,'showExam'])
+
 // dev only
 router.post('/exams', [ExamsController, 'create'])
 
@@ -22,7 +24,6 @@ router.post('/auth/reset-password', [AuthController, 'resetPassword'])
 //google OAuth2
 router.get('/auth/google', [GoogleAuthController, 'redirect'])
 router.get('/auth/google/callback', [GoogleAuthController, 'callback'])
-router.get('/exam-attempts/:id',[ExamAttemptsController,'showExam'])
 router.post('/auth/google/callback', [GoogleAuthController, 'mobile'])
 
 router

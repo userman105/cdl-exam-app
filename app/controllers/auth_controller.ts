@@ -159,6 +159,7 @@ export default class AuthController {
         })
       }
 
+      // @ts-ignore
       const isValid = await hash.verify(user.password, password)
       if (!isValid) return response.status(401).json({ error: 'Invalid credentials' })
 

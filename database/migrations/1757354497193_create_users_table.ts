@@ -6,10 +6,10 @@ export default class Users extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('user_id') // autoincrement primary key
       table.string('f_name').notNullable()
-      table.string('l_name').notNullable()
+      table.string('l_name').nullable()
       table.string('user_name').unique().notNullable()
       table.string('email').unique().notNullable()
-      table.string('password').notNullable()
+      table.string('password').nullable()
       table.string('mobile_number').nullable()
       table.boolean('subscribed').defaultTo(false)
       table.enum('type_of_subscription', ['WEEKLY', 'MONTHLY', 'YEARLY', 'ONE_TIME']).nullable()

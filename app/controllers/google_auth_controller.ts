@@ -24,10 +24,18 @@ export default class GoogleAuthController {
     try {
       const { code } = request.qs()
       const { tokens } = await this.client.getToken(code)
-
+      const { email } = request.only(['email'])
+      const existingUser = await User.findBy('email', email)
       const payload = await this.verifyGoogleToken(tokens.id_token!)
       if (!payload?.email) {
         return response.unauthorized({ error: 'No email returned from Google' })
+      }
+
+      if (existingUser) {
+        return response.badRequest({
+          success: false,
+          message: 'An account with this email already exists.',
+        })
       }
 
       return this.loginOrReject(payload.email, response)
@@ -40,14 +48,11 @@ export default class GoogleAuthController {
   async mobile({ request, response }: HttpContext) {
     try {
       const idToken = request.input('id_token')
-      if (!idToken) {
-        return response.badRequest({ error: 'Missing id_token' })
-      }
+      if (!idToken) return response.badRequest({ error: 'Missing id_token' })
 
       const payload = await this.verifyGoogleToken(idToken)
-      if (!payload?.email) {
+      if (!payload?.email)
         return response.unauthorized({ error: 'No email returned from Google' })
-      }
 
       return this.loginOrReject(payload.email, response)
     } catch (err) {
@@ -55,6 +60,7 @@ export default class GoogleAuthController {
       return response.internalServerError({ error: 'Google login failed' })
     }
   }
+
 
   private async verifyGoogleToken(idToken: string) {
     const ticket = await this.client.verifyIdToken({
@@ -65,27 +71,43 @@ export default class GoogleAuthController {
   }
 
   private async loginOrReject(email: string, response: HttpContext['response']) {
-    const user = await User.findBy('email', email)
+    let user = await User.findBy('email', email)
 
+    // If no user, create one as unverified
     if (!user) {
-      return response.unauthorized({
-        error: 'No account found with this email. Please register first.',
+      user = await User.create({
+        email,
+        userName: email.split('@')[0],
+        fName: '',
+        is_verified: false,
+      })
+
+      // TODO: Send OTP via your existing mail service here
+      return response.status(202).json({
+        success: true,
+        needs_verification: true,
+        email: user.email,
+        message: 'New user created. Please verify your account via OTP.',
       })
     }
 
+    // If user exists but not verified
     if (!user.is_verified) {
-      return response.unauthorized({
-        error: 'Please verify your email before logging in with Google.',
+      // Optionally resend OTP
+      return response.status(202).json({
+        success: true,
+        needs_verification: true,
+        email: user.email,
+        message: 'Please verify your email before logging in.',
       })
     }
 
-
+    // If user verified, log them in normally
     await AuthAccessToken.query().where('tokenable_id', user.user_id).delete()
-
-
     const token = await User.accessTokens.create(user)
 
     return response.json({
+      success: true,
       user: {
         user_id: user.user_id,
         fName: user.fName,
@@ -102,4 +124,5 @@ export default class GoogleAuthController {
       },
     })
   }
+
 }
