@@ -6,8 +6,8 @@ import CredentialHistory from './credentials_history.js'
 import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
 
 export default class User extends BaseModel {
-  static accessTokens = DbAccessTokensProvider.forModel(User)
   public static table = 'users'
+  static accessTokens = DbAccessTokensProvider.forModel(User)
 
   @column({ isPrimary: true })
   public user_id!: number
@@ -30,11 +30,34 @@ export default class User extends BaseModel {
   @column()
   public mobileNumber?: string
 
+  // =====================
+  // Subscription Tracking
+  // =====================
+
   @column()
   public subscribed!: boolean
 
   @column()
   public typeOfSubscription?: 'WEEKLY' | 'MONTHLY' | 'YEARLY' | 'ONE_TIME'
+
+  // Start and end timestamps (in UTC)
+  @column.dateTime()
+  public subscription_started_at?: DateTime | null = null
+
+  @column.dateTime()
+  public subscription_ends_at?: DateTime | null = null
+
+  @column()
+  public google_photo_url?: string | null = null
+
+  public get isSubscriptionActive(): boolean {
+    if (!this.subscription_ends_at) return false
+    return DateTime.utc() <= this.subscription_ends_at
+  }
+
+  // =====================
+  // Timestamps
+  // =====================
 
   @column.dateTime({ autoCreate: true })
   public createdAt!: DateTime
@@ -45,6 +68,10 @@ export default class User extends BaseModel {
   @column.dateTime()
   public lastLogin?: DateTime
 
+  // =====================
+  // OTP Verification
+  // =====================
+
   @column()
   public otp_code?: string | null = null
 
@@ -54,8 +81,16 @@ export default class User extends BaseModel {
   @column()
   public is_verified: boolean = false
 
+  // =====================
+  // Relations
+  // =====================
+
   @hasMany(() => CredentialHistory)
   public credentialsHistory!: HasMany<typeof CredentialHistory>
+
+  // =====================
+  // Hooks
+  // =====================
 
   @beforeSave()
   public static async hashPassword(user: User) {

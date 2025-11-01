@@ -41,11 +41,13 @@ export default class UserController {
         return response.status(400).json({ error: 'Old password is required' })
       }
 
+      // @ts-ignore
       const isValid = await hash.verify(user.password, oldPassword)
       if (!isValid) {
         return response.status(401).json({ error: 'Invalid old password' })
       }
 
+      // @ts-ignore
       oldPasswordHash = user.password // store old hash
       user.password = newPassword // auto-hashed in model
       updated = true

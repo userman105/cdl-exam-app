@@ -197,20 +197,36 @@ export default class AuthController {
   async me({ auth, response }: HttpContext) {
     try {
       await auth.authenticate()
+      const user = auth.user!
+
       return response.json({
-        user_id: auth.user!.user_id,
-        fName: auth.user!.fName,
-        lName: auth.user!.lName,
-        userName: auth.user!.userName,
-        email: auth.user!.email,
-        mobileNumber: auth.user!.mobileNumber,
-        subscribed: auth.user!.subscribed,
-        typeOfSubscription: auth.user!.typeOfSubscription,
-        lastLogin: auth.user!.lastLogin,
+        success: true,
+        message: 'User profile fetched successfully',
+        user: {
+          user_id: user.user_id,
+          fName: user.fName,
+          lName: user.lName,
+          userName: user.userName,
+          email: user.email,
+          mobileNumber: user.mobileNumber,
+          subscribed: user.subscribed,
+          typeOfSubscription: user.typeOfSubscription,
+          subscriptionStartedAt: user.subscription_started_at,
+          subscriptionEndsAt: user.subscription_ends_at,
+          isSubscriptionActive: user.isSubscriptionActive,
+          lastLogin: user.lastLogin,
+          createdAt: user.createdAt,
+          updatedAt: user.updatedAt,
+          googlePhotoUrl: user.google_photo_url
+        },
+        requestedAt: new Date().toISOString(),
       })
     } catch (error) {
       console.error('Auth error:', error)
-      return response.status(401).json({ error: 'Unauthorized' })
+      return response.status(401).json({
+        success: false,
+        error: 'Unauthorized or invalid token',
+      })
     }
   }
 

@@ -54,7 +54,7 @@ export default class GoogleAuthController {
       if (!payload?.email)
         return response.unauthorized({ error: 'No email returned from Google' })
 
-      return this.loginOrReject(payload.email, response)
+      return this.loginOrReject(payload, response)
     } catch (err) {
       console.error('Google mobile login error:', err)
       return response.internalServerError({ error: 'Google login failed' })
@@ -70,39 +70,30 @@ export default class GoogleAuthController {
     return ticket.getPayload()
   }
 
-  private async loginOrReject(email: string, response: HttpContext['response']) {
+  private async loginOrReject(
+    payload: any,
+    response: HttpContext['response']
+  ) {
+    const email = payload.email
     let user = await User.findBy('email', email)
 
-    // If no user, create one as unverified
     if (!user) {
       user = await User.create({
         email,
-        userName: email.split('@')[0],
-        fName: '',
-        is_verified: false,
+        fName: payload.given_name || '',
+        lName: payload.family_name || '',
+        userName: payload.name || email.split('@')[0],
+        google_photo_url: payload.picture || null,
+        is_verified: true, // Google-verified
       })
-
-      // TODO: Send OTP via your existing mail service here
-      return response.status(202).json({
-        success: true,
-        needs_verification: true,
-        email: user.email,
-        message: 'New user created. Please verify your account via OTP.',
-      })
+    } else {
+      // Update photo if changed
+      if (payload.picture && user.google_photo_url !== payload.picture) {
+        user.google_photo_url = payload.picture
+        await user.save()
+      }
     }
 
-    // If user exists but not verified
-    if (!user.is_verified) {
-      // Optionally resend OTP
-      return response.status(202).json({
-        success: true,
-        needs_verification: true,
-        email: user.email,
-        message: 'Please verify your email before logging in.',
-      })
-    }
-
-    // If user verified, log them in normally
     await AuthAccessToken.query().where('tokenable_id', user.user_id).delete()
     const token = await User.accessTokens.create(user)
 
@@ -115,6 +106,7 @@ export default class GoogleAuthController {
         userName: user.userName,
         email: user.email,
         mobileNumber: user.mobileNumber,
+        googlePhotoUrl: user.google_photo_url, // 👈 returned to Flutter
       },
       token: {
         type: 'bearer',
