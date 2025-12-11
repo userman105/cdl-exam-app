@@ -1,95 +1,139 @@
-Do not use the brakes to slow down the vehicle.
-Use fewer gears than you used to climb the hill.
-Rust around the wheel mounting bolts may mean that they are not properly secured.
-Tires of different sizes should not be used together on the same vehicle.
-You will go straight ahead even if you turn the steering wheel.
-Avoid using the brakes until your speed drops to 20 mph.
-Unstable loads such as hanging meat or livestock require extra caution when turning.
-This is because they can startle other drivers.
-Refuse to load the cargo.
-Sleep is the only thing that can overcome fatigue.
-Lifting the brake pedal will help bring some pressure so that the vehicle can be stopped.
-A football field.
-Wash the windshield with antifreeze.
-Lower the lights for 300 feet from oncoming vehicles.
-When shifting down for a curve, you must do so before entering the curve.
-Place the triangle between you and oncoming traffic.
-Your judgment and decision-making will be affected.
-There are blind spots that mirrors cannot cover.
- Increase the distance between you and the vehicle behind you.
- Increase the distance between you and the vehicle behind you.
-Be balanced in the cargo area.
-12-15 seconds.
-Stop accelerating.
-Helps slow down the vehicle while driving Slows down brake wear
-Used to keep the vehicle in a straight line while braking.
-When you feel sleepy.
-Keep injured people calm.
-Press the brake pedal gently while driving in water.
-Drug use can lead to an accident or arrest.
-Heavy vehicles need more distance than normal vehicles.
-Use the parking brake to stabilize the vehicle until the brakes work.
-Slow down to a safe speed before crossing a curve.
-Move to the right side.
-This is caused by the brakes overheating.
-Never remove the cooling system cap on a pressurized system until the system has cooled down.
-The weight of the vehicle changes the height.
-A burning tire must be extinguished with water.
-Slow down gradually.
-Violent acceleration can cause mechanical damage.
-Heavy or fast-moving vehicles will absorb more heat from the brakes in order to stop.
-Brake discs must contain brake fluid.
-At night, turn on your high beams before you start passing and keep them on until you have passed the vehicle.
-Take your foot off the accelerator.
-If the wheels are spinning, you cannot control the vehicle.
-If the tires are too hot to touch, applying five or ten pounds of pressure will cool them down.
-You can always turn to avoid an obstacle faster than you can stop.
-Tire blowout.
-Take regular breaks.
-If there is nothing on the side of the road, stay to the right until your vehicle stops, then return to the road when it is safe to do so.
-Wind is a particular problem when exiting a tunnel.
-Keep your dashboard lights on at all times.
-4 seconds.
-Both hands on either side of the steering wheel.
-Use when it is safe and legal to do so.
-It may be a slow-moving vehicle.
-The space around the ignition column.
-Stop driving at the earliest opportunity when it is safe to do so.
-35 miles per hour.
- Turn the steering wheel in the opposite direction to avoid a traffic emergency.
- You should avoid using the brake when you can.
-Release the brake when you are 5 miles per hour below the safe speed, then let your speed return to the safe speed and repeat this again. (Reduce your speed to 5 mph below the safe speed).
-When turning, you should signal early.
-You can use the engine rev counter to tell you when to change gear.
-When you double your speed, you will need twice the distance to stop.
-This can cause the front wheels to skid when they have low traction.
-Stop using the brakes and turn quickly in the opposite direction.
-Maintain a speed 5-10 mph below the posted speed limit.
-Empty truck.
-3
-50
-Both the trailer and the tractor.
-0.04
-In your pocket.
-Low pressure in the front wheels.
-Talking to other drivers about what you want.
-One-year suspension of your commercial driver's license (CDL).
-You will be out of service for 24 hours.
-If you double your speed, your stopping distance will quadruple.
- Look for an emergency exit on the road or escape routes.
-It can cause the truck to roll over in turns.
-10
-Stop safely and fix the problem.
-Lift the brake pedal to generate more pressure.
-Vibration.
-Select a gear that keeps your vehicle at a safe speed on the slope.
-The nature of the load requires you to stop under state or federal law.
-500
-Always dangerous.
-Turn on your hazard lights to warn other drivers.
-Within 500 feet behind you.
-Anti-lock brakes.
-It is less dangerous to skid off the side of the road than to cause a collision.
- Car heating.
-Occurs when you drive fast or stop quickly.
- Increase the distance between you and them.
+ "Exhaust.",
+ "It bleeds making the road surface slippery",
+ "Park the truck until the fog clears.",
+ "Tire thread's depth.",
+ "Learn escape ramp locations on your way.",
+ "Should be used by any driver who loses braking power.",
+ "If you have a cellular phone or CB radio yous should notify the authorities before exiting",
+ "Wait for fire fighters.",
+ "Tire damage.",
+ "Turn signals and four way flashers.",
+ "Not move.",
+ "10",
+ "Parking brakes.",
+ "Empty trucks take longer to stop than if loaded, but this is not the normal case for buses.",
+ "Release the parking brakes as you apply engine power.",
+ "When driving in winter weather, you should check that the heater is working properly before starting your trip.",
+ "Poisonous fumes can enter the cab or sleeping compartment.",
+ "A loss of steering control.",
+ "The eyes see a hazard to the time the brain knows that this is a hazard.",
+ "Are often wider than other vehicles.",
+ "You are about to exit the road and need to slow down.",
+ "Wait for a large enough gap in the traffic to enter the road.",
+ "Leave on your high beams.",
+ "Because you cannot see, you should back slowly until you slightly bump into the dock.",
+ "1 block",
+ "In order to turn quickly you must have a firm grip on the steering wheel.",
+ "Responding to a hazard by slowing the vehicle.",
+ "Provide enough traction to push the rig over wet pavement and through snow.",
+ "The tank must be labeled with a four-inch diamond-shaped hazard symbol",
+ "A double with an empty trailer.",
+ "Gravity.",
+ "Battery fluid level.",
+ "Before the fire happens.",
+ "Safety.",
+ "Steering wheel play of more than 10 degrees (2 inches on 20 inches steering Wheel).",
+ "They show a wider area than flat mirrors show.",
+ "To keep control of the vehicle.",
+ "Perception distance, reaction distance, and braking distance.",
+ "Start at the inside lane and swing right as you turn.",
+ "They may be moving to your traffic lane.",
+ "Use your mirrors to make sure the gap in traffic is large enough for you to enter safely.",
+ "Signal early and change lane slowly and smoothly.",
+ "Use your high beams when legal and keep your interior lights off.",
+ "Driving too fast for conditions.",
+ "Short term or daily rental truck drivers are often not use to the limited vision, which makes these drivers a hazard.",
+ "When the temperature drops, the bridges freeze before the road.",
+ "Poor cargo ventilation may cause cargo to catch on fire.",
+ "All the time.",
+ "Amount of fuel on a vehicle.",
+ "If you need to tilt a cab, secure loose things so that they could not fall or break anything.",
+ "Yes and they can put you out of service if unsafe.",
+ "A state law dictates legal weight limit.",
+ "Basic chemistry.",
+ "Their weight",
+ "You are giving your consent to be tested for alcohol in your blood.",
+ "Near, lower",
+ "5 seconds",
+ "Look to the right lane or edge markings of the road.",
+ "Watch for  oncoming traffic.",
+ "There may be strong winds when exiting.",
+ "If it helps to avoid a crash.",
+ "Not less than 4/32 inch.",
+ "1/4",
+ "1/10",
+ "Is any road condition or other road user that is possible danger.",
+ "Slow down to a safe speed before the turn.",
+ "Tractor with two 27-feet trailers.",
+ "1 second for each 10 feet of vehicle length.",
+ "Often makes you sleepy and should not be used while driving.",
+ "It is not important how you brake in an emergency situation.",
+ "Driving too fast.",
+ "Honk your horn and stay close behind the car.",
+ "Use your four-way flashers or brake lights to warn others.",
+ "Look outside your vehicle for another means of slowing you.",
+ "Park on the side of the road.",
+ "Yes, because the brakes can get out of adjustment when they are used a lot.",
+ "You should adjust your mirrors before starting the trip.",
+ "1/2",
+ "Permits less maximum axle weight for axles that are closer together.",
+ "Where the rear of your vehicle is while you make turns.",
+ "Prescription drugs are allowed if a doctor says they will not affect the driving ability.",
+ "If you do not hold a wheel with both hands it could pull away from you.",
+ "Whenever you have to back.",
+ "Using mirrors and turn signals, turn sharply to get back to the road.",
+ "Dust brush.",
+ "Signal other drivers when it is safe to pass you.",
+ "They may move slowly, unexpectedly change lanes or stop.",
+ "Enough engine oil level.",
+ "Should be performed after every break you take while driving.",
+ "Poor traction.",
+ "Park in an open area.",
+ "If a hill or curve keeps drivers behind you from seeing the vehicle within 500 feet, the reflective triangle should be moved back to give adequate warning.",
+ "Generally are used when freight is carried part way by rail or ship.",
+ "You can check the coolant level of a hot engine.",
+ "While the vehicle is parked.",
+ "Use the braking effect of the engine.",
+ "Squeezing the brakes firmly without locking them up.",
+ "Brake adjustment.",
+ "Labels",
+ "Robotic",
+ "Gross combination weight",
+ "Below the posted speed limit.",
+ "Most heavy vehicle accidents occur between midnight and 6 a.m.",
+ "Front of",
+ "Trailer jack-knife.",
+ "Axles' mounts should be checked at each point where they are secured on the vehicle frame and axles.",
+ "Brake shoes should not have oil,grease, or brake fluid on them.",
+ "If The vehicle does not require placards.",
+ "1 year",
+ "All trucks carrying hazardous materials pose a threat to public safety and health.",
+ "Any detectable amount.",
+ "Responding to a hazard by slowing the vehicle.",
+ "You can pull forward when you leave.",
+ "Total weight of a single vehicle plus its load.",
+ "The coolant temperature gauge should begin a gradual rise to normal.",
+ "4",
+ "Protect the area.",
+ "Shift to lower gear.",
+ "You need both hands on the wheel to turn safely.",
+ "Hydraulic brakes.",
+ "A drinker can control how fast his or her body absorbs alcohol.",
+ "Require special permits.",
+ "The faster or heavier the vehicle is, the more heat the brakes have to absorb to stop it.",
+ "Warning signal for parked vehicles.",
+ "When any defects are noted whether they are certified to be repaired or not.",
+ "In the pouch of the driver door.",
+ "On a vehicle with a trailer, the trailer can push the towing vehicle sideways.",
+ "Defensive",
+ "Off-tracking.",
+ "The tracks have a steep approach.",
+ "Ice should be removed from the radiator shutter.",
+ "Within 10 minutes.",
+ "Automatic transmission.",
+ "Air pressure in tires increases with the temperature.",
+ "Find another route that will not require driving under the object.",
+ "You should inspect your tires every two hours or every 100 miles when driving in very hot weather.",
+ "The value specified by the manufacturer as the loaded weight of a single vehicle.",
+ "Gross Combination Weight Rating",
+ "Stay on shoulder until your vehicle has come to a stop.",

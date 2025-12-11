@@ -288,6 +288,284 @@ export default class wrongGeneralAnswerSeeder extends BaseSeeder {
       "Press the brakes lightly to warn drivers behind you to back up.",
       "Increase your speed to increase the distance between you and those behind you.",
 
+      "Steering.",
+      "Suspension.",
+      "Nothing.",
+      "It becomes staining making tires stick to the road",
+      "Alternate your own high beams to improve your vision.",
+      "Do not drive too slowly or other drivers may hit you.",
+      "The weight of the load.",
+      "The length of the grade.",
+      "Unhook your steering axle brakes.",
+      "Carry the tire chains in your vehicle.",
+      "Are not designed for tractors-double trailers.",
+      "Are designed to slow vehicles so they can get back on the road at the safe speed.",
+      "You should notify authorities about an accident before doing anything else.",
+      "An exact location is not necessary just Identify the road and the vehicles involved.",
+      "Use dirt.",
+      "Use water.",
+      "Mechanical damage.",
+      "Damage of a coupling.",
+      "Turn signals, tail lights and clearance lights.",
+      "Headlights, brake lights, and clearance lights.",
+      "Sink to the floor.",
+      "Depress slightly.",
+      "25",
+      "10",
+      "Slow acceleration.",
+      "tire check.",
+      "If brakes work, weight will have no effect on stopping distance.",
+      "Fully loaded trucks take longer to stop, or the buses loaded with passengers take less distance than empty ones.",
+      "Keep the trailer brake hand valve applied until you reach 20mph.",
+      "Engage the clutch and accelerate quickly.",
+      "If you feel sleepy, warming of your cab with the heater will help you stay alert.",
+      "You must have at least one extra heater such as a mirror heater, battery pack heater, or fuel tank heater when temperature drops below freezing point.",
+      "You can pollute the air with the exhaust smoke.",
+      "Noise can damage the driver's ears.",
+      "A loss of engine braking effect.",
+      "Damage to the transmission.",
+      "Your eyes see a hazard to the time your foot pushes to the brake pedal.",
+      "the brain tells the foot to push the brake pedal to time the foot responses.",
+      "Require a lot of room to change lane.",
+      "Tend to sway from time to time.",
+      "A driver tailgates your vehicle.",
+      "police car is approaching you from the other direction.",
+      "Gain speed on the shoulder and then merge",
+      "Bend over into the nearest lane so the other vehicles will give you room.",
+      "Adjust headlights.",
+      "Clean your headlights",
+      "you should use a helper and communicate with him with hand signals.",
+      "You should back and turn toward the driver's side whenever it is possible.",
+      "1/2 block",
+      "2 blocks",
+      "You can stop more quickly than you can turn to miss obstacles.",
+      "Stopping is always the safest thing to do in a traffic emergency.",
+      "Pushing down the brake pedal as hard as you can.",
+      "Pushing down pedal and turning sharply.",
+      "Be checked every one-hundred miles or every 2 hours.",
+      "Be double the depth required in normal weather.",
+      "Cylinders loaded with compressed gas must be sealed before transportation if the are unmarked",
+      "Cargo like this must be marked with a 4-inch-diameter, red circle on the tank",
+      "A tractor pulling  a loaded flat-bed trailer.",
+      "A triple axle vehicle with cargo.",
+      "Lack of traction.",
+      "The engine runs smoother.",
+      "Electrical system Isolation.",
+      "Cargo ventilation.",
+      "Only when the fire happens.",
+      "Only when you are transporting flammable materials.",
+      "To avoid being cited.",
+      "It's the law.",
+      "Oil on a tire rod.",
+      "if a gray smoke is coming out from the exhaust pipe.",
+      "Make objects appear closer than they really are.",
+      "Make objects appear larger than they really are.",
+      "To keep the engine oil flowing",
+      "To keep the engine warm.",
+      "Attention distance, reaction distance, and slowing distance.",
+      "Respond distance, observation distance, and braking distance.",
+      "Start your turn in the center of the intersection.",
+      "Use a right-hand turn lane if there are two turning lanes.",
+      "they see your vehicle",
+      "They know you are to pass.",
+      "Assume other drivers will allow you to merge.",
+      "Check your mirrors to make sure the rear of your vehicle will not hit anything.",
+      "Signal before the change and move over quickly.",
+      "Signal after you begin change and cross over slowly.",
+      "Find another route that is better lit even if it is out of your way.",
+      "turn your interior lights on and adjust your instrument lights.",
+      "An uneven load.",
+      "Turning too sharply.",
+      "Mail or delivery trucks are professionals and do not pose a hazard.",
+      "Drivers who use turn signals should always be trusted to turn towards the signaled direction.",
+      "The road is more slippery when the rain continues than when rain begins.",
+      "Driving conditions became more Dangerous when temperature arises above freezing.",
+      "Carrying a fully charged fire extinguisher may prevent a fire.",
+      "Under inflated tires cannot cause a vehicle fire.",
+      "Only when you are on a highway.",
+      "Only when you are driving.",
+      "Cargo security.",
+      "Whether all lights are working.",
+      "Leave key in the ignition so you do not lose it when ou are under the truck.",
+      "When you park on a street, you should walk so you face away from an oncoming traffic.",
+      "No.",
+      "Yes, but cannot put you out of service.",
+      "The legal maximum weight allowed by the state is considered safe for all driving conditions.",
+      "If cargo is loaded by the shipper a driver is not responsible for its load.",
+      "When to use the placards.",
+      "Which products can be loaded together.",
+      "How often they drink alcohol.",
+      "Their age.",
+      "You are giving your consent to inspect your vehicle for alcohol.",
+      "It is understood that you may drink alcohol now and then.",
+      "Above, lower",
+      "Below, higher",
+      "4 seconds",
+      "6 seconds",
+      "Flash your high beams quickly at the other driver.",
+      "Slow down and look straight ahead in your lane.",
+      "Back to allow the oncoming traffic to pass.",
+      "Complete your turn without stopping.",
+      "Headlights are required by law.",
+      "Emergency flashers are required by law.",
+      "car is in your way",
+      "You want to change a lane.",
+      "Not less than 2/32 inch.",
+      "More than 6/32 inch.",
+      "1/2",
+      "1/3",
+      "1/3",
+      "1/2",
+      "Cannot turn into emergency",
+      "Does not need to be seen.",
+      "Slow to the posted speed limit for the off-ramp.",
+      "Slow down to 15 mph below the posted speed limit.",
+      "53-feet straight truck.",
+      "Tractor with 45-feet trailer.",
+      "1 second for each 30 feet of vehicle length.",
+      "1 second for each 20 feet of vehicle length.",
+      "Should only be used when driving at daytime.",
+      "May still be used while driving if you us half of a regular dose.",
+      "You should avoid using the brakes until your speed is down to 20 mph.",
+      "You should brake in a way that keeps your vehicle in a straight line.",
+      "Driving while eating,",
+      "Driving at night.",
+      "Signal and change lanes to avoid hazard.",
+      "Slow down to prevent a crash.",
+      "Steer around it and get back in your",
+      "Stop quickly and pull to the side of the road.",
+      "Hit some object in order to stop your vehicle.",
+      "Find an escape ramp in order to exit the roadway.",
+      "Cross railway track.",
+      "Drive through the mountains.",
+      "No, because the other brakes will make up for the air brakes when they are out of adjustment.",
+      "It depends on how the brakes are.",
+      "The mirrors could be adjusted correctly even if the trailer is not straight.",
+      "You should adjust your mirrors while you are driving.",
+      "1/4",
+      "1/3",
+      "Permits less maximum axle weight for the axles that are far apart.",
+      "Permits the same maximum axle weight for any axle.",
+      "Blind spots.",
+      "If your running lights are working.",
+      "Prescription or non-prescription drugs are allowed  at any time of driving.",
+      "Which of these is true about the use of drug s while driving?",
+      "Only with an attempt of a difficult turn use both hands on the wheel.",
+      "If you have reached a cruising speed on a highway you can drive with one hand.",
+      "Only if you need to park.",
+      "Only if you have a trailer on your vehicle.",
+      "Using mirrors and turn signals, return when the road is clear.",
+      "Ride on shoulder to the next exit and then re-enter the road.",
+      "windshield defroster.",
+      "Windshield scraper.",
+      "Use four-way flashers if it is legal in your state.",
+      "Stay on the right side of the road.",
+      "Police do not fine them.",
+      "They drive rented cars.",
+      "Air conditioner use.",
+      "High speed driving in order to put more air to the radiator.",
+      "Is most often not the responsibility of the driver.",
+      "Are needed only if hazardous materials are being hauled.",
+      "Better handling",
+      "Damage to drive axle tires.",
+      "Park where a building or trees shelter our vehicle from the wind.",
+      "Increase your speed to put out the flames.",
+      "The vehicles tail lights should be kept on to warn other drivers.",
+      "You must put out your emergency warning devices within 5 minutes.",
+      "Should be supplied with their own tie down devices or locks.",
+      "Are not required to be inspected by a driver.",
+      "You never need to check the antifreeze in such a system.",
+      "The radiator cap can be safely removed,and coolant added while the engine is hot.",
+      "While moving at a very low speed.",
+      "When backing.",
+      "Brake when you exceed safe speed by 5 mph.",
+      "Use controlled braking.",
+      "Slamming on the brakes hard and making wheels lock up.",
+      "Pressing brakes until wheel lock-up occurs, releasing and then reapplying.",
+      "Condition of hoses.",
+      "Hydraulic brake cylinders leaks.",
+      "Covers",
+      "Shapes",
+      "Electric",
+      "Hydraulic",
+      "Gross axle weight's",
+      "Gross vehicle weight.",
+      "At the posted speed.",
+      "Whatever speed you feel comfortable with",
+      "Most people are more vigilant.",
+      "Most hazards are easier to spot at night rather than in the morning.",
+      "Back of",
+      "To the side of",
+      "Hydroplaning.",
+      "Extensive brake wear.",
+      "Distorted springs are safe as long as they are not broken.",
+      "Suspension components should be checked at all axles except for the following unit.",
+      "Just one missing leaf in a leaf spring is not dangerous.",
+      "Spring hangers that are cracked but still tight are not dangerous.",
+      "the person who has Hazmat endorsement drives with you.",
+      "The load of the hazardous materials is 26 pounds or less.",
+      "2 years",
+      "6 months",
+      "Any truck carrying any amount of hazardous materials must have placards.",
+      "Any public road allows trucks, carrying hazardous materials if they are loaded correctly.",
+      "0.02.",
+      "0.04.",
+      "Using the vehicle emergency brakes.",
+      "Pushing down the brake pedal as hard as you can.",
+      "Your vehicle is parked by trees.",
+      "Park along curb next to another vehicle.",
+      "Both.",
+      "Total weight of a single vehicle.",
+      "The oil pressure gauge should take 3-5 minutes to rise to normal.",
+      "The engine temperature gauge will take 3-5 minutes to rise to normal.",
+      "3",
+      "2",
+      "Notify the authorities.",
+      "Care for the injured.",
+      "Drive on the side of the road, so others can pass your vehicle.",
+      "Exit the road until traffic is lighter.",
+      "It is illegal to turn off your signal before completing the turn.",
+      "Most vehicle have self-canceling signals.",
+      "Service brake.",
+      "Parking bra",
+      "BAC is determined by how fast you drink; how much you drink and how much you eat.",
+      "Alcohol goes directly from the stomach to the blood stream",
+      "Must be accompanied by the police.",
+      "Can only be driven at daylight.",
+      "Brake fade is not caused by heat.",
+      "Heat increases brake responsiveness as the vehicle moves quickly.",
+      "Tire-fixing kit",
+      "First-aid kit",
+      "Only when defects are noted that are certified to not need repair.",
+      "Only when defects are noted that are certified to be repaired.",
+      "In the glove compartment, which must be working.",
+      "Under the driver seat.",
+      "Front wheels slide sideways to try to catch up with the rear wheels.",
+      "Locked wheels usually have more traction than rolling wheels.",
+      "Offensive",
+      "Objective",
+      "Wide rounding",
+      "Side winding.",
+      "If you cross the double tracks too slowly.",
+      "You try to shift gear when crossing.",
+      "the winter front should be closed tightly.",
+      "The engine may overheat if winter-front left open.",
+      "Within 20 minutes.",
+      "Within 15 minutes",
+      "Multi-speed rear axles.",
+      "Auxiliary transmission.",
+      "The pressure is not to be checked during the trip if it passed the pre-trip inspection.",
+      "You do not have to check the hot tires, because the tire is not blown out.",
+      "Estimate the height of topped overhead object if it is not posted.",
+      "Slow down slightly and try to drive under object.",
+      "If a tire is too hot to touch, you should drive on it to cool it off.",
+      "A small amount of air could be let out, but air pressure remains stable.",
+      "Maximum gvw specified by manufacturer for a single vehicle.",
+      "Maximum gvw specified by the manufacturer.",
+      "Gross Vehicle Weight Rating",
+      "Gross Combination Weight",
+      "Ride on shoulder to the next exit and then re-enter the road.",
+      "Using mirrors and turn signals, turn sharply to get back to the road.",
     ]
 
 
@@ -576,6 +854,286 @@ export default class wrongGeneralAnswerSeeder extends BaseSeeder {
 
       ,'اضغط علي المكابح بشكل خفيف من اجل تحذير السائقين خلفك ليذهبوا الي الخلف.'
       ,'قم بزيادة السرعة من اجل زيادة المسافة بينك و بين من يسير خلفك.'
+
+      ,"التوجيه."
+      ,"التعليق."
+      ," لا شيء."
+      ," يجعل سطح الطريق لزج مما يجعل الاطارات تلتصق بالطريق"
+      ," انتقل الي الاضاءة المرتفعة من اجل تحسين الرؤية."
+      ," لا تقود بشكل بطيء, او من المرجح ان يصطدم بك سائقين اخرين."
+      ,"عرض المنحدر."
+      ,"وزن الحمولة."
+      ," قم بإلغاء مكابح محور التوجيه."
+      ," قم بحمل سلاسل الإطارات في المركبة الخاصة بك."
+      ,"غير مصممة للشاحنات ذات المقطورات المزدوجة."
+      ,"مصممة من اجل ابطاء المركبات من اجل ان يعودوا الي الطريق بالسرعة الامنة."
+      ," العنوان بالتحديد ليس مهم اخبرهم فقط بالطريق و المركبات التي كانت في الحادث."
+      ," يجب عليك اخبار السلطات قبل القيام بأي شيء اخر."
+      ," استخدام التراب."
+      ," استخدام الماء."
+      ,"الضرر الميكانيكي."
+      ,"ضرر الصواميل."
+      ,"اضاءة الانعطاف, اضاءة المؤخرة, الإضاءة اعلي المركبة."
+      ,"الإضاءة الامامية, اضاءة المكابح, و إضاءة اعلي المركبة."
+      ," تهبط مباشرة الي الأرضية."
+      ," تنخفض قليلاً."
+      ," 25"
+      ," 50"
+      ,"ابطاء التدافع."
+      ,"  فحص الاطار."
+      ,"اذا كانت المكابح تعمل, الوزن سوف يكون بلا تأثير علي مسافة التوقف."
+      ," الشاحنات المحملة بالكامل تتطلب مسافة أكبر من اجل التوقف, او الحافلات المحملة بالركاب تتطلب مسافة اقل من اجل التوقف من الحافلات التي تكون فارغة."
+      ,"ابدأ باستخدام الدبرياج و قم بزيادة التسارع بشكل سريع."
+      ," ابقي ذراع مكابح المقطورة مرفوعاً, حتي تقوم بالتسارع الي سرعة 20 ميل في الساعة."
+      ," يجب عليك ان يكون لديك مدفأة إضافية مثل مدفأة الزجاج , مدفأة البطارية, او مدفأة خزان الوقود, عندما تنخفض درجات الحرارة الي درجات التجمد."
+      ," اذا كنت تشعر بالنعاس, تدفئة الكابينة الخاصة بك بالمدفأة سوف يساعد علي البقاء يقظاً."
+      ," يمكن ان يؤدي ذلك الي تلويث الهواء بالدخان المتصاعد من العادم."
+      ," سوف يؤذي الضجيج اذن السائق."
+      ,"خسارة في قدرة المحرك علي الكبح."
+      ," ضرر لنظام ناقل الحركة."
+      ," هو الوقت الذي تري فيه العين الخطر, الي الوقت الذي تضغط فيه قدمك علي دواسة المكابح."
+      ," هو الوقت الذي يخبر فيه الدماغ القدم ان تضغط علي دواسة المكابح, الي الوقت الذي تستجيب فيه القدم الي ذلك الأمر."
+      ,"عادة ما تميل من وقت الي اخر."
+      ,"تتطلب الكثير من المساحة من اجل تغير الحارة."
+      ,"سيارة شرطة تقترب منك في الاتجاه المقابل."
+      ," سائق يقوم بالسير خلف مركبتك."
+      ,"الدخول الي اقرب حارة حتي يمكن للمركبات الاخرين ان يعطوك مساحة."
+      ," قم بالتسارع علي جانب الطريق ثم قم بالدخول الي الطريق."
+      ,"قم بتنظيف الإضاءة الامامية."
+      ," قم بتعديل الإضاءة الامامية."
+      ," يجب ان تقوم باستخدام مساعد و التواصل معه عن طريق لغة الإشارة."
+      ," يجب عليك ان ترجع و تلتف في اتجاه السائق عندما يكون من المسموح فعل ذلك."
+      ," ½ المسافة."
+      ," 2 المسافة."
+      ," يمكنك التوقف اسرع مما يمكنك الانعطاف من اجل تجنب عائق."
+      ," التوقف هو أماناً شيء حالة وجود طارئ مروري."
+      ," اضغط علي دواسة المكابح بقوة."
+      ," الضغط علي الدواسة و الانعطاف بقوة."
+      ," يجب ان يتم تفقدها بعد كل مائة ميل او بعد كل ساعتين."
+      ," يجب ان يكون عمق مسارات مداس الاطار ضعف ما يتطلب من اجل السير في الأوضاع العادية."
+      ,"الأسطوانات المزودة بالغاز المضغوط يجب ان يتم نقلها تحت غطاء اذا كان لا يوجد عليهم علامة."
+      ," مثل هذه الحمولة يجب ان يتم تعليمها بعلامة دائرية حجمها أربعة انشات, بالون الأحمر علي الخزان."
+      ," جرار يسحب عربة مسطحة عليها حمولة."
+      ," عربة ذات ثلاثة عجلات محملة بالبضاعة."
+      ," نقص العزم."
+      ," المحرك يعمل بشكل انعم."
+      ," عزل الاسلاك الكهربائية."
+      ," تهوية البضاعة."
+      ," فقط عندما تقوم بنقل مواد قابلة للاشتعال."
+      ," فقط عند وقو الحريق."
+      ," من اجل تجنب المسائلة."
+      ,"انه قانون."
+      ," وجود زيت علي كوبلن العجلة."
+      ," اذا كان هناك دخان رمادي يخرج من العادم."
+      ," تجعل الأشياء تبدو اقرب مما هي عليه في الحقيقة."
+      ," تجعل الأشياء تبدو اكبر مما هي عليه في الحقيقة."
+      ," من اجل المحافظة علي تدفق زيت المحرك."
+      ," من اجل المحافظة علي دفء المحرك."
+      ," مسافة الاستجابة, مسافة المشاهدة, و مسافة التوقف."
+      ," مسافة الانتباه, مسافة رد الفعل, و مسافة الابطا."
+      ," ابدأ بالانعطاف في منتصف التقاطع."
+      ," استخدم الحارة التي علي الاتجاه الأيمن اذا كان هناك حارتين."
+      ," انهم يرون مركبتك."
+      ," يعلمون انك تقوم بالتخطي."
+      ," افترض ان السائقين الاخرين سوف يسمحون لك بالدخول في المرور."
+      ," تفقد المراية من اجل التأكد ان لا شيء سوف يستدم بمؤخرة المركبة"
+      ,"قم بالإشارة قبل تغير الحارة و انتقل سريعاً."
+      ," قم بالإشارة بعد البدء في التغير و انتقل ببطء."
+      ," اعثر علي طريق اخر يكون اكثر اضاءة حتي اذا لم يكن في الطريق الخاص بك."
+      ," قم بتشغيل الإضاءة الداخلية الخاصة بك و قم بتعديل اضاءة لوحة العداد."
+      ,"حمولة غير متوازنة."
+      ," الانعطاف بحدة."
+      ," سائقي البريد و سائقي شحنات التسليم محترفين ولا يشكلون خطر."
+      ," السائقين الذين يستخدمون الاشرات يجب دائماً الوثق في انهم سوف ينعطفون في اتجه الإشارة."
+      ,"الطريق زلق عندما يستمر المطر اكثر مما هو عليه في بداية المطر"
+      ," ظروف القيادة تكو اكثر خطراً عندما تنخفض الحرارة الي درجة التجمد."
+      ," حمل طفاية حريق ممتلئة بالكامل من المحتمل ان يمنع حريق."
+      ," الاطارات الغير منفوخة جيداً لا يمكن ان تتسبب في حرق."
+      ," فقط عندما تقوم بالقيادة."
+      ," فقط عندما تكون علي الطريق السريع."
+      ," امان الحمولة."
+      ," كل الأضواء تعمل ام لا؟"
+      ," اترك المفتاح في مكان التشغيل حتي لا تفقده بينما انت اسفل الشاحنة."
+      ," عندما تقوم بالركن في الشارع يجب عليك ان تمشي بعيداً عن الزحام القادم."
+      ," لا."
+      ," نعم, لاكن لا يمكنهم وضعك خارج الخدمة."
+      ," أقصي وزن يسمح بحمله بواسطة الولاية, يعتبر اماً في كل ظروف القيادة."
+      ," يتم تحميل البضاعة بواسطة من يقوم بالشحن, السائق غير مسئول عن الحمولة."
+      ," أي المنتجات يمكن ان يتم تحميلها معاً."
+      ," متي يستخدم اللافتات المناسبة."
+      ," كم يشربوا كحول عادةً."
+      ," سنهم."
+      ," انت تعطي للسلطات الأذن من اجل تفقد المركبة, من اجل البحث عن الكحل."
+      ," من المتفهم انه من المحتمل ان تشرب بعض الكحل من وقت لأخر."
+      ,"علي, اقل."
+      ," ادني, اكثر."
+      ," 4 ثواني من المساحة."
+      ," 6 ثواني من المساحة."
+      ," قم بتشغيل الإضاءة المرتفعة الخاصة بك بسرعة في اتجه السائق."
+      ," ابطء السرعة و انظر امامك في الحراة التي تقود عليها."
+      ," الرجوع من اجل السماح للمرور القادم بالعبور."
+      ," اكمل الالتفاف بدون التوقف."
+      ," ينص القانون علي تشغيل المصابيح الامامية."
+      ," ينص القانون علي تشغيل اضاءة الانتظار."
+      ," سيارة في الطريق الخاص بك."
+      ," انت تريد تغير الحارة."
+      ," ليس اقل من 2/32 انش."
+      ," اكثر من 6/32 انش."
+      ," 1/2"
+      ," 1/3"
+      ," 1/3"
+      ," 1/2"
+      ," لا يمكن ان يتحول الي طوارئ."
+      ," لا يتاج الي ان يتم رؤيته."
+      ," ابطء الي السرعة المشار اليها علي المخرج."
+      ," ابطء الي سرعة 15 ميل اقل من السرعة المشار اليها علي الطريق السريع."
+      ," عربة واحدة حجمها 53 قدم."
+      ," جرار مع مقطورة حجمها 45 قدم."
+      ," ثانية 1 لكل 30 قدم."
+      ," ثانية 1 لكل 20 قدم."
+      ," يجب ان يستخدم فقط عند القيادة في النهار."
+      ," يمكن استخدامه اثناء القيادة فقط اذا قمت بأخذ نصف الجرعة."
+      ," يجيب عليك تجنب استخدام المكابح حتي تقل سرعتك الي 20 ميل في اساعة."
+      ," يجب عليك ان تستخدم المكابح بطريقة تبقي المركبة الخاصة بك في خط مستقيم"
+      ," الاكل اثناء القيادة."
+      ," القيادة في الليل."
+      ," قم بالإشارة و تغير الحارة من اجل تجنب الخطر."
+      ," ابطء من اجل تجنب الاصطدام."
+      ," قم بالتوجه جانباً و عد بعد ذلك الي الحارة."
+      ," توقف بسرعة و توجه الي جانب الطريق."
+      ," قم بخبط شيء ما من اجل ابطأ المركبة الخاصة بك."
+      ," اعثر علي مخرج طوارئ من اجل الخروج من الطريق."
+      ,"عندما تعبر خط السكة الحديد."
+      ," عندما تقود في الجبال."
+      ," لا, لان المكابح الأخرى سوف تحل محل مكابح الهواء اذا كانت غير معدلة."
+      ," يعتمد علي نوعية المكابح."
+      ," يمكن تعديل المرايا بشكل صحيح حتي اذا كانت المقطورة غير مستقيمة."
+      ," يمكن ان تقوم بتعديل المرايا الخاصة بك اثناء القيادة."
+      ," 1/3"
+      ," 1/4"
+      ,"تسمح بنفس وزن المحور علي كل المحاور."
+      ,"تسمح بوزن اقصي اقل لكل المحاور البعيدة عن بعضها البعض."
+      ," النقط العمياء."
+      ," اذا كانت الإضاءة الخاصة بك تعمل"
+      , "يسمح باستخدام الاميفتامين من اجل البقاء يقظا"
+      ," الوصفات الطبية و غير الطبية يسمح باستخدامها في أي وقت اثناء القيادة"
+      ,"اذا وصلت الي السرعة المناسبة علي الطريق السريع, يمكنك القيادة بيد واحدة."
+      ,"فقط في حالات الانعطاف الصعبة يجب عليك استخدام كلتا يديك من اجل امساك العجلة."
+      ," فقط اذا كان لديك مقطورة علي المركبة الخاصة بك."
+      ," فقط اذا كنت تحتاج الي الركن."
+      ," استمر علي كتف الطريق حتي المخرج التالي و عندها قم بالدخول الي الطريق مجدداً"
+      ," باستخدام المرايا و اشرات الالتفاف, قم بالعودة الي الطريق عندما يكون فارغً."
+      ," ماسح الزجاج الامامي."
+      ," مدفئة الزجاج الامامي."
+      ," استخدام اضاءة الانتظار اذا كان استخدامها قانوني في الولاية."
+      ," ابقي علي الجانب الأيمن من الطريق"
+      ,"يقودون سيارات مستأجرة."
+      ,"البوليس لا يقوم بتغريمهم."
+      ," القيادة بشكل اسرع من اجل توجيه المزيد من الهواء الي الرديتر."
+      ," استخدام مكيف الهواء."
+      ," في معظم الأحيان هي ليست مسئولية السائق."
+      ," تحتاج اليه فقط في حالة تحميل المواد الخطرة."
+      ," تحكم افضل."
+      ," ضرر لمحور القيادة."
+      ," قم بالركن في مكان فيه مباني او شجر من اجل حماية المركبة من الرياح."
+      ," قم بزيادة السرعة من اجل إطفاء السنة اللهب."
+      ," يجب ان تبقي الاضاءة الخلفية تعمل من اجل تحذير السائقين الاخرين."
+      ," يجب عليك وضع اجهزة علامات التحذير خلال 5 دقائق."
+      ,"يجب ان يتم تسليمهم بأدوات الربط او الاقفال الخاصة بهم."
+      ," من غير المطلوب لن يتم تفقدهم بواسطة السائق."
+      ,"لا يجب علي تفقد مضاد التجمد في مثل هذا النظام."
+      ," غطي الردياتير يمكن فكه بأمان, و أضافة سائل التبريد بينما المحرك ساخن."
+      ,"عند الرجوع الي الخلف."
+      ," بينما تتحرك بسرعة منخفضة."
+      ," ابطأ عندما تخطي السرعة القصوة ب5 ميل في الساعة"
+      ," قم باستخدام المكابح بشكل متحكم فيه."
+      ," الضغط علي المكابح بشكل كامل, حتي تتوقف العجلات عن الدوران."
+      ," الضغط علي المكابح حتي تتوقف العجلات عن الدوران, و ثم رفع الضغط مع تكرار ذلك."
+      ," حالة الخراطيم."
+      ," تفقد اسطوانة المكابح الهيدروليكية من التسريب."
+      ," الاغطية."
+      ," الاشكال."
+      ," الكهربائية."
+      ," الهيدروليكية."
+      ,"  وزن المحور."
+      ,"  وزن المركبة الإجمالي."
+      ," أي سرعة تشعرك بالارتياح."
+      ," علي نفس السرعة المشار اليها علي الطريق."
+      ," معظم الناس يكونوا يقظين اكثر في الليل من النهار."
+      ,"  معظم المخاطر من الاسهل رؤيتها اثناء الليل مما هو عليه اثناء النهار."
+      ,"خلف مركبتك."
+      ," بجانب مركبتك."
+      ," سوف تنزلق المركبة."
+      ," سوف تتأكل المكابح بشكل اسرع."
+      ," المساعدين التي لا تعمل بشكل جيد من الامن استخدامها طالما ليست مكسورة."
+      ," أجزاء نظام التعليق يجب فحصها علي كل المحاور باستثناء الوحدة التالية."
+      ," اذا كان المكان الذي يوجد به المساعد متشقق ولكن مذال يحافظ علي شكله فلا يعد هذا خطيراً."
+      ," اذا كان هناك طبقة مفقودة من الزنبرك الورقي فهذا ليس خطيراً."
+      ," اذا كان الشخص الذي يحمل ترخيص التعامل مع المواد الخطيرة يقود معك."
+      ," اذا كانت حمولة المواد الخطيرة هي 26 بوند او اقل."
+      ,"  2 سنة."
+      ,"  6 اشهر."
+      ,"   أي شاحنة تحمل أي كمية من المواد الخطيرة يجب ان يكون عليها لافتات."
+      ,"   أي طريق عام يسمح للشحنات, ان تحمل مواد خطيرة اذا تم تحميل المواد بشكل صحيح."
+      ,"0.02"
+      ,"0.04"
+      ," استخدام مكابح الطوارئ الخاصة بالمركبة."
+      ," الضغط علي دواسة المكابح بقدر المستطاع."
+      ,"ركن المركبة بجانب الشجر."
+      ," اركن المركبة علي طول الرصيف بجانب مركبة اخري."
+      ,"  كلاهما."
+      ,"  الوزن الإجمالي لمركبة واحدة."
+      ,"   مؤشر ضغط الزيت يجب ان يأخذ من 3-5 دقائق من اجل ان يصل الي المستوي الطبيعي."
+      ,"   مؤشر درجة حرارة المحرك سوف يتطلب من 3-5 دقائق من اجل الوصول الي المستوي الطبيعي."
+      ,"    3 اضعاف."
+      ,"    2 اضعاف."
+      ," اخبر السلطات."
+      ," قم برعاية المصابين."
+      ," اخرج من الطريق حتي يقل الزحام."
+      ," قم بالقيادة علي جانب الطريق, حتي يتمكن الاخرين من تخطي مركبتك."
+      ,"  انه من غير القانوني إطفاء اضاءة الإشارة بدون اكمال الانعطاف."
+      ,"  معظم المركبات لديها نظام الغاء اشرة آلي."
+      ," مكابح الخدمة."
+      ," مكابح الركن."
+      ," (BAC) اختبار تركيز الكحول في الدم يتم معرفته عن طريق معرفة سرعة استهلاك الكحول, و الكمية المستهلكة من الكحول, وكمية الطعام."
+      ," يذهب الكحول من المعدة الي مجري الدم يشكل مباشر."
+      ," يجب ان يتم مرافقته بواسطة الشرطة."
+      ," يجب ان يتم قيادتها خلال ضوء النهار."
+      ,"  الحرارة تضاعف استجابة المكابح, بينما تتحرك المكربة بسرعة."
+      ,"  تأكل المكابح, ليس المتسبب به الحرارة."
+      ," عدة اصلح الاطار."
+      ," المسعدات الأولية."
+      ,"  فقط عادما يكون العيب لا يحتاج الي صيانة."
+      ,"  فقط اذا كان العيب قابل للصيانة."
+      ," في الجزء المخصص للقفزات, الذي يجب ان يكو يعمل."
+      ," تحت مقعد السائق."
+      ," العجلات المتوقفة عادة ما يكون لديها عزم اكبر من العجلة المتحركة."
+      ," العجلات الامامية سوف تنزلق الي الجانب, من اجل اللحاق بالعجلات الخلفية"
+      ,"  القيادة الهجومية."
+      ,"  القيادة الموضوعية."
+      ,"   الالتفاف الجانب."
+      ,"   الالتفاف الوساع."
+      ," محاولة تغير الغيار اثناء العبور."
+      ," اذا قمت بتخطي خطي السكة الحديد ببطء."
+      ," من المرجح ان تزداد حرارة المحرك (winter-front) اذا تم تركه مفتوح."
+      ," (winter-front) يجب ان يتم اغلاقه جيداً."
+      ," خلال 20 دقيقة."
+      ," خلال 15 دقيقة."
+      ," ناقل حركة المزدوج."
+      ," ناقل غيارات يدوي متعدد السرعات."
+      ," لا حاجة الي تفقد الاطار في اثناء الرحلة, اذا قمت بتفقده في فحص ما قبل الرحلة ."
+      ," انت لست بحاجة الي تفقد اطر ساخن, لأن الاطار لم ينفجر."
+      ," خمن المسافة المتاحة اعلي المركبة اذا كانت غير منشورة علي الطريق."
+      ," ابطأ كليلاً و حاول القيادة اسفل الجسم."
+      ,"  كمية صغيرة من الهواء من الممكن ان تخرج م الاطار, لاكن ضغط الهواء يبقي مستقر."
+      ,"  اذا كان هناك اطار ساخن الي درجة انه لا يمكن لمسه, يجب عليك القيادة من اجل تبريده."
+      ," اقصي (GVW) يتم تحديده عن طريق المصنع لمركبة واحدة."
+      ," اقصي (GVW) يتم تحديده بواسطة المصنع."
+      ," تصنيف الوزن الإجمالي للمركبة."
+      ," اجمالي مجموع الاوزان."
+      ," استمر بالقيادة علي جانب الطريق, ثم بعد ذلك انتقل الي جانب الطريق."
+      ," استخدم المرايا و اشرات الالتفاف, انعطف بشدة من اجل الانتقال الي الطريق من جديد."
+
 
 
     ]

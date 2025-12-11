@@ -28,6 +28,6 @@ wrong2 = 265 + (q-65) x 2
 questions of type airBrakes start from 65 to 135
 
 general questions
-correct = 406 + (q-136)
-wrong1 = 501 + 2 x (q-136)
-wrong1 = 502 + 2 x (q-136) 
+correct = 406 + (136-136) = 406 + 0 = 406
+wrong1 = 501 + 2 × (136-136) = 501 + 0 = 501
+wrong2 = 502 + 2 × (136-136) = 502 + 0 = 502
