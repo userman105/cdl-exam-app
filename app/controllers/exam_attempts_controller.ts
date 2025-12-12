@@ -36,8 +36,8 @@ export default class ExamAttemptsController {
           } else if (exam.examType === 'general') {
             // General: questions 136+
             const offset = question.questionId - 136
-            wrong1Id = 501 + 2 * offset
-            wrong2Id = 502 + 2 * offset
+            wrong1Id = 640 + 2 * offset
+            wrong2Id = 641 + 2 * offset
           } else {
             // Combination or default: original formula
             wrong1Id = 64 + (question.questionId - 1) * 2 + 1
